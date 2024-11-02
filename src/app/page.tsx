@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Typewriter from './components/Typewriter';
-import { FaLinkedin } from 'react-icons/fa'; // Import LinkedIn icon
-// import { FaGithub } from 'react-icons/fa'; // Uncomment to add GitHub icon later
 
 const Home = () => {
   const staticImage = '/me.jpg';
@@ -111,18 +109,6 @@ const Home = () => {
           </p>
           <div title='Click to copy email to clipboard'>
             <Typewriter text={email} delay={200} infinite={false} />
-          </div>
-
-          {/* Social Icons */}
-          <div className='flex justify-center mt-4'>
-            <a
-              href='https://www.linkedin.com/in/marcelo-morales-547138190/' // Replace with your actual LinkedIn profile URL
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-gray-300 hover:text-gray-400 transition duration-300'
-            >
-              <FaLinkedin size={24} />
-            </a>
           </div>
         </div>
       </main>
