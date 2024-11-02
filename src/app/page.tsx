@@ -4,17 +4,19 @@ const Home = () => {
   // URLs for the static and animated images
   const staticImage = '/me.jpg'; // Replace with the actual path to your static image
   const animatedImage = '/me_animated.png'; // Replace with the actual path to your animated image
+  const lightningGif = 'lightning.webp';
 
   // Event handlers to toggle images
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8 sm:p-20 font-[family-name:var(--font-geist-sans)] text-center gap-16">
+    <div className="min-h-screen flex flex-col items-center justify-center p-8 sm:p-20 font-[family-name:var(--font-geist-sans)] text-center gap-16 bg-black">
 
       {/* Profile Picture with Hover Transition */}
       <div
-        className="relative w-[180px] h-[180px] mb-4 cursor-pointer group rounded-full"
+        className="relative w-[180px] h-[180px] mb-4 cursor-pointer group rounded-full cursor={'url(zenitsu_cur.png), auto'}"
         style={{
-          background: 'linear-gradient(to right, #c0b88d 50%, #cfc7a5 50%)'
+          background: 'linear-gradient(to right, #BCB384 50%, #d3ccad 50%)',
+          cursor: 'url(/zenitsu_cur.png), auto' // Custom cursor when hovering
         }}
       >
         {/* Static Image (Zoomed Out) */}
@@ -35,11 +37,21 @@ const Home = () => {
           objectFit="cover"
           className="rounded-full shadow-lg border-4 border-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
         />
+
+        {/* Lightning Effect Overlay */}
+        <div
+          className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
+          style={{
+            backgroundImage: `url(${lightningGif})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        ></div>
+
       </div>
 
-
       {/* Introduction */}
-      <main className="max-w-md animate-fadeIn delay-300">
+      <main className="max-w-md animate-fadeIn delay-300 text-white">
         <h1 className="text-3xl font-bold mb-4">Welcome!</h1>
         <p className="text-lg">
           I’m Marcelo, currently in my third year as a PhD student at The Ohio State University.
@@ -47,7 +59,7 @@ const Home = () => {
           and blockchain under the mentorship of{" "}
           <a
             href="https://example.com/dr-carter-yagemann" // Replace with actual URL
-            className="text-blue-600 hover:underline"
+            className="text-cyan-500 hover:text-cyan-400"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -59,7 +71,7 @@ const Home = () => {
           of working under the guidance of{" "}
           <a
             href="https://example.com/dr-harsha-chenji" // Replace with actual URL
-            className="text-blue-600 hover:underline"
+            className="text-cyan-500 hover:text-cyan-400"
             target="_blank"
             rel="noopener noreferrer"
           >
