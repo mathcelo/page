@@ -5,7 +5,7 @@ import PublicationList from '../components/PublicationList';
 
 const About: React.FC = () => {
     return (
-        <div className='min-h-screen p-8 sm:p-20 text-gray-200 bg-slate-900'>
+        <div className='min-h-screen p-8 sm:p-20 text-gray-200'>
             <h1 className='text-4xl font-bold mb-8'>About Me</h1>
 
             {/* Education Section */}

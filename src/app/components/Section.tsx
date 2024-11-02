@@ -16,7 +16,7 @@ const Section: React.FC<SectionProps> = ({ title, children }) => {
     };
 
     return (
-        <div className="border border-gray-700 rounded-md mb-4 bg-slate-800 shadow-lg overflow-hidden">
+        <div className="border border-gray-700 rounded-md mb-4  shadow-lg overflow-hidden">
             <div
                 className="flex items-center justify-between px-4 py-3 cursor-pointer"
                 onClick={toggleSection}

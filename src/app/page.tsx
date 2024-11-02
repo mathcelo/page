@@ -45,7 +45,7 @@ const Home = () => {
 
       {/* Main Content including Introduction and Contact Section */}
       <main className='max-w-md text-white/90 leading-relaxed tracking-wide animate-fadeIn delay-300'>
-        <h1 className='text-3xl font-extrabold mb-6 text-gray-200'>Welcome!</h1>
+        <h1 className='text-3xl font-extrabold mb-6 text-gray-200'>Hello there!</h1>
 
         {/* Styled Paragraphs with more spacing and softer secondary text */}
         <p className='text-lg font-normal leading-8 text-gray-300 first-letter:text-2xl first-letter:font-semibold first-letter:text-gray-400 indent-6 mb-4'>
@@ -57,8 +57,8 @@ const Home = () => {
           As part of the W3CIL lab, I focus on exploring innovative aspects of
           cybersecurity and blockchain under the mentorship of{' '}
           <a
-            href='https://example.com/dr-carter-yagemann'
-            className='text-cyan-400 font-medium hover:text-cyan-300 transition-all duration-300 ease-in-out'
+            href='https://carteryagemann.com/'
+            className='text-gray-400 font-medium hover:text-gray-300 transition-all duration-300 ease-in-out'
             target='_blank'
             rel='noopener noreferrer'
           >
@@ -71,8 +71,8 @@ const Home = () => {
           In 2022, I earned my bachelor's degree at Ohio University, where I had
           the privilege of working under the guidance of{' '}
           <a
-            href='https://example.com/dr-harsha-chenji'
-            className='text-cyan-400 font-medium hover:text-cyan-300 transition-all duration-300 ease-in-out'
+            href='https://www.ohio.edu/engineering/about/people/chenji'
+            className='text-gray-400 font-medium hover:text-gray-300 transition-all duration-300 ease-in-out'
             target='_blank'
             rel='noopener noreferrer'
           >
