@@ -4,16 +4,14 @@ const Home = () => {
   // URLs for the static and animated images
   const staticImage = '/me.jpg'; // Replace with the actual path to your static image
   const animatedImage = '/me_animated.png'; // Replace with the actual path to your animated image
-  const lightningGif = 'lightning.webp';
-
-  // Event handlers to toggle images
+  const lightningGif = '/lightning.webp'; // Ensure this path is correct
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8 sm:p-20 font-[family-name:var(--font-geist-sans)] text-center gap-16 bg-black">
+    <div className="min-h-screen flex flex-col items-center justify-center p-8 sm:p-20 font-[family-name:var(--font-geist-sans)] text-center gap-16 bg-slate-900">
 
       {/* Profile Picture with Hover Transition */}
       <div
-        className="relative w-[180px] h-[180px] mb-4 cursor-pointer group rounded-full cursor={'url(zenitsu_cur.png), auto'}"
+        className="relative w-[180px] h-[180px] mb-4 group rounded-full"
         style={{
           background: 'linear-gradient(to right, #BCB384 50%, #d3ccad 50%)',
           cursor: 'url(/zenitsu_cur.png), auto' // Custom cursor when hovering
@@ -47,7 +45,6 @@ const Home = () => {
             backgroundPosition: 'center'
           }}
         ></div>
-
       </div>
 
       {/* Introduction */}
@@ -59,7 +56,7 @@ const Home = () => {
           and blockchain under the mentorship of{" "}
           <a
             href="https://example.com/dr-carter-yagemann" // Replace with actual URL
-            className="text-cyan-500 hover:text-cyan-400"
+            className="text-cyan-400 hover:text-cyan-300"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -71,7 +68,7 @@ const Home = () => {
           of working under the guidance of{" "}
           <a
             href="https://example.com/dr-harsha-chenji" // Replace with actual URL
-            className="text-cyan-500 hover:text-cyan-400"
+            className="text-cyan-400 hover:text-cyan-300"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -80,17 +77,17 @@ const Home = () => {
         </p>
       </main>
 
-      {/* About Me & Research Interests Buttons */}
-      <div className="flex flex-col sm:flex-row gap-4 mt-8 animate-fadeIn delay-500">
+      {/* Uniform Width Buttons with Rounded Edges */}
+      <div className="flex gap-4 mt-8 animate-fadeIn delay-500">
         <a
           href="/about"
-          className="rounded-full border border-gray-300 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700 px-6 py-3 text-base sm:text-lg font-medium"
+          className="rounded-full bg-gray-700 text-gray-200 py-2 px-6 text-base sm:text-lg font-medium hover:bg-gray-600 transition-all duration-300 ease-in-out min-w-[150px] text-center"
         >
           About Me
         </a>
         <a
           href="/research"
-          className="rounded-full border border-gray-300 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700 px-6 py-3 text-base sm:text-lg font-medium"
+          className="rounded-full bg-gray-700 text-gray-200 py-2 px-6 text-base sm:text-lg font-medium hover:bg-gray-600 transition-all duration-300 ease-in-out min-w-[150px] text-center"
         >
           Research Interests
         </a>
