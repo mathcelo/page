@@ -14,7 +14,7 @@ interface PublicationProps {
     highlightName?: string; // Name to be highlighted
 }
 
-const Publication: React.FC<PublicationProps> = ({ title, authors, booktitle, year, address, url, publisher, pages, highlightName = "Marcelo Morales" }) => {
+const Publication: React.FC<PublicationProps> = ({ title, authors, booktitle, year, address, url, highlightName = "Marcelo Morales" }) => {
     const formattedAuthors = authors.map((author, index) => (
         <span key={index} className={author === highlightName ? 'font-bold' : ''}>
             {author}

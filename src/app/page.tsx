@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Image from 'next/image';
 import Typewriter from './components/Typewriter';
 
@@ -68,7 +67,7 @@ const Home = () => {
         </p>
 
         <p className='text-lg font-normal leading-8 text-gray-300 indent-6 mb-4'>
-          In 2022, I earned my bachelor's degree at Ohio University, where I had
+          In 2022, I earned my bachelor&apos;s degree at Ohio University, where I had
           the privilege of working under the guidance of{' '}
           <a
             href='https://www.ohio.edu/engineering/about/people/chenji'

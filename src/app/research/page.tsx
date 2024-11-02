@@ -1,7 +1,6 @@
 import React from 'react';
 import Section from '../components/Section';
 import PublicationList from '../components/PublicationList';
-import Entry from '../components/Entry';
 
 const Research: React.FC = () => {
     return (
