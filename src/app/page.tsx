@@ -7,9 +7,9 @@ const Home = () => {
   const lightningGif = '/lightning.webp'; // Ensure this path is correct
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8 sm:p-20 font-[family-name:var(--font-geist-sans)] text-center gap-16 bg-slate-900">
+    <div className="min-h-screen flex flex-col items-center justify-center p-8 sm:p-20 text-center gap-16 bg-gradient-to-b from-slate-900 to-slate-800">
 
-      {/* Profile Picture with Hover Transition */}
+      {/* Profile Picture with Original Styling */}
       <div
         className="relative w-[180px] h-[180px] mb-4 group rounded-full"
         style={{
@@ -48,15 +48,15 @@ const Home = () => {
       </div>
 
       {/* Introduction */}
-      <main className="max-w-md animate-fadeIn delay-300 text-white">
-        <h1 className="text-3xl font-bold mb-4">Welcome!</h1>
+      <main className="max-w-md text-white/90 leading-relaxed tracking-wide animate-fadeIn delay-300">
+        <h1 className="text-3xl font-extrabold mb-4 text-gray-200">Welcome!</h1>
         <p className="text-lg">
-          I’m Marcelo, currently in my third year as a PhD student at The Ohio State University.
+          I’m <span className="text-cyan-400 font-semibold">Marcelo</span>, currently in my third year as a PhD student at The Ohio State University.
           As part of the W3CIL lab, I focus on exploring innovative aspects of cybersecurity
           and blockchain under the mentorship of{" "}
           <a
             href="https://example.com/dr-carter-yagemann" // Replace with actual URL
-            className="text-cyan-400 hover:text-cyan-300"
+            className="text-cyan-400 hover:text-cyan-300 hover:underline hover:underline-offset-2 transition-all duration-300 ease-in-out"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -68,30 +68,17 @@ const Home = () => {
           of working under the guidance of{" "}
           <a
             href="https://example.com/dr-harsha-chenji" // Replace with actual URL
-            className="text-cyan-400 hover:text-cyan-300"
+            className="text-cyan-400 hover:text-cyan-300 hover:underline hover:underline-offset-2 transition-all duration-300 ease-in-out"
             target="_blank"
             rel="noopener noreferrer"
           >
             Dr. Harsha Chenji
-          </a>. I’m excited to share my work, interests, and journey with you.
+          </a>.
+        </p>
+        <p className="text-lg mt-4">
+          I’m excited to share my <a href="/about" className="text-cyan-400 hover:text-cyan-300 hover:underline hover:underline-offset-2 transition-all duration-300 ease-in-out">background</a> and <a href="/research" className="text-cyan-400 hover:text-cyan-300 hover:underline hover:underline-offset-2 transition-all duration-300 ease-in-out">research interests</a> with you as I continue on this journey.
         </p>
       </main>
-
-      {/* Uniform Width Buttons with Rounded Edges */}
-      <div className="flex gap-4 mt-8 animate-fadeIn delay-500">
-        <a
-          href="/about"
-          className="rounded-full bg-gray-700 text-gray-200 py-2 px-6 text-base sm:text-lg font-medium hover:bg-gray-600 transition-all duration-300 ease-in-out min-w-[150px] text-center"
-        >
-          About Me
-        </a>
-        <a
-          href="/research"
-          className="rounded-full bg-gray-700 text-gray-200 py-2 px-6 text-base sm:text-lg font-medium hover:bg-gray-600 transition-all duration-300 ease-in-out min-w-[150px] text-center"
-        >
-          Research Interests
-        </a>
-      </div>
     </div>
   );
 };
