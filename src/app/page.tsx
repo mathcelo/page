@@ -9,7 +9,7 @@ const Home = () => {
   const email = 'morales.374@osu.edu';
 
   return (
-    <div className='min-h-screen flex flex-col items-center justify-center p-8 sm:p-20 text-center gap-16 bg-gradient-to-b from-slate-900 to-slate-800'>
+    <div className='min-h-screen flex flex-col items-center justify-center p-8 sm:p-20 text-center gap-16'>
       {/* Profile Picture with Original Styling */}
       <div
         className='relative w-[180px] h-[180px] mb-4 group rounded-full'

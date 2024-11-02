@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Header from "./components/Header"; // Import the Header component
 import Footer from "./components/Footer"; // Import the Footer component
 
 const geistSans = localFont({
@@ -14,7 +15,6 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-// Update metadata with a custom title and description
 export const metadata: Metadata = {
   title: "Marcelo Morales",
   description: "Exploring cybersecurity and blockchain research by Marcelo Morales, PhD student at The Ohio State University.",
@@ -28,11 +28,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-900 text-gray-300`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-b from-slate-900 to-slate-800 text-gray-300`}
       >
         <div className="min-h-screen flex flex-col">
+          {/* Header */}
+          <Header />
+
           {/* Main Content */}
-          <main className="flex-grow bg-slate-900">{children}</main>
+          <main className="flex-grow">{children}</main>
 
           {/* Footer */}
           <Footer />
