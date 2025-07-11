@@ -49,8 +49,7 @@ const Home = () => {
         {/* Styled Paragraphs with more spacing and softer secondary text */}
         <p className='text-lg font-normal leading-8 text-gray-300 first-letter:text-2xl first-letter:font-semibold first-letter:text-gray-400 indent-6 mb-4'>
           I’m <span className='text-cyan-400 font-medium'>Marcelo</span>,
-          currently in my third year as a PhD student at The Ohio State
-          University.
+          Ill be a fourth year PhD student at The Ohio State University.
           <br />
           <br />
           As part of the W3CIL lab, I focus on exploring innovative aspects of
