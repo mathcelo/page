@@ -23,14 +23,16 @@
 # misc
 .DS_Store
 *.pem
+*.log
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# env files (can opt-in for commiting if needed)
+# env files (can opt-in for committing if needed)
 .env*
+.env.*.local
 
 # vercel
 .vercel
@@ -38,3 +40,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# scripts
+deploy.sh
+
+# optional: OS/system files
+Thumbs.db
+.idea/
+.vscode/
+*.swp

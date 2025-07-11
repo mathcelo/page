@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Typewriter from './components/Typewriter';
 
 const Home = () => {
-  const staticImage = '/me.jpg';
+  const staticImage = '/me.png';
   const animatedImage = '/me_animated.png';
   const lightningGif = '/lightning.webp';
   const email = 'morales.374@osu.edu';
@@ -107,7 +107,7 @@ const Home = () => {
             Get in touch, send me an email at:
           </p>
           <div title='Click to copy email to clipboard'>
-            <Typewriter text={email} delay={200} infinite={false} />
+            <Typewriter text={email} delay={200} infinite={true} />
           </div>
         </div>
       </main>
