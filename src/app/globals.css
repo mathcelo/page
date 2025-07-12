@@ -2,3 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Add syntax highlighting theme */
+@import 'highlight.js/styles/tokyo-night-dark.css';
