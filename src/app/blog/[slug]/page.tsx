@@ -4,6 +4,8 @@ import path from 'path';
 import matter from 'gray-matter';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { mdxComponents } from '@/app/mdx-components';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeSlug from 'rehype-slug';
 
 export async function generateStaticParams() {
   const dir = path.join(process.cwd(), 'src/content/blog');
@@ -34,13 +36,21 @@ export default async function BlogPostPage(props: {
   if (!post) notFound();
 
   return (
-    <article className='prose mx-auto p-4'>
+    <article className='prose prose-invert mx-auto p-4'>
       <h1 className='text-4xl font-bold mb-4'>{post.data.title}</h1>
-      <time className='text-gray-600 mb-6 block'>
+      <time className='text-neutral-5 mb-6 block'>
         {new Date(post.data.date).toLocaleDateString()}
       </time>
 
-      <MDXRemote source={post.content} components={mdxComponents} />
+      <MDXRemote
+        source={post.content}
+        components={mdxComponents}
+        options={{
+          mdxOptions: {
+            rehypePlugins: [rehypeHighlight, rehypeSlug],
+          },
+        }}
+      />
     </article>
   );
 }
