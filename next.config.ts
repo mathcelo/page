@@ -1,19 +1,21 @@
-import type { NextConfig } from "next";
+import createMDX from '@next/mdx'
+import type { NextConfig } from 'next'
 
-const nextConfig: NextConfig = {
+const baseConfig: NextConfig = {
   images: {
-    // Disable Next.js optimizations for images (it's not available for static sites
-    // and will throw an error)
     unoptimized: true,
     domains: ['media.licdn.com'],
   },
-
-  // This tells Next.js to export a static build to the `out` folder
-  output: "export",
-
-  // This tells Next.js to export pages as "folders with an `index.html` file inside"
-  // We use this option so we can avoid having the `.html` extension at the end of the page URLs.
+  output: 'export',
   trailingSlash: true,
-};
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+}
 
-export default nextConfig;
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+  // Optional: Add remark/rehype plugins if needed
+})
+
+const nextConfig = withMDX(baseConfig)
+
+export default nextConfig
