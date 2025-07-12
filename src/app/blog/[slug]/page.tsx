@@ -29,7 +29,7 @@ async function getBlogPost(slug: string) {
 export default async function BlogPostPage(props: {
   params: Promise<{ slug: string }>;
 }) {
-  const params = await props.params; // ✅ await params first
+  const params = await props.params;
   const post = await getBlogPost(params.slug);
   if (!post) notFound();
 

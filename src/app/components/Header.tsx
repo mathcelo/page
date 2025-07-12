@@ -21,12 +21,12 @@ const Header: React.FC = () => {
           >
             About
           </Link>
-          <Link
+          {/* <Link
             href='/blog'
             className='hover:text-cyan-400 transition duration-300'
           >
             Blog
-          </Link>
+          </Link> */}
           <Link
             href='/research'
             className='hover:text-cyan-400 transition duration-300'
