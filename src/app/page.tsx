@@ -67,8 +67,8 @@ const Home = () => {
         </p>
 
         <p className='text-lg leading-8 indent-6 mb-4 text-neutral-6'>
-          In 2022, I earned my bachelor's degree at Ohio University, where I had
-          the privilege of working under the guidance of{' '}
+          In 2022, I earned my bachelor&apos;s degree at Ohio University, where
+          I had the privilege of working under the guidance of{' '}
           <a
             href='https://www.hchenji.com/'
             className='text-neutral-5 font-medium hover:text-neutral-4 transition-all duration-300 ease-in-out'
