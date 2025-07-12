@@ -14,15 +14,16 @@ const config: Config = {
       },
       keyframes: {
         flash: {
-          '0%, 100%': { backgroundColor: '#1f2937' }, // Original dark gray color
-          '50%': { backgroundColor: '#4b5563' }, // Lighter gray flash color
+          '0%, 100%': { backgroundColor: '#1f2937' },
+          '50%': { backgroundColor: '#4b5563' },
         },
       },
       animation: {
-        flash: 'flash 0.2s ease-in-out', // Flash animation with a 0.2s duration
+        flash: 'flash 0.2s ease-in-out',
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };
+
 export default config;
