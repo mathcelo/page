@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <div className='min-h-screen flex flex-col items-center justify-center p-8 sm:p-20 text-center gap-16'>
-      {/* Profile Picture with Image Swap and Lightning */}
+      {/* Profile Picture with  Image Swap and Lightning */}
       <div
         className='relative w-[180px] h-[180px] mb-4 group rounded-full overflow-hidden'
         style={{
