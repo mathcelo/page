@@ -1,75 +1,62 @@
 'use client';
+
 import React, { useState, useEffect } from 'react';
 
-// Define the props interface
 interface TypewriterProps {
-    text: string;
-    delay: number;
-    infinite?: boolean;
+  text: string;
+  delay?: number;
+  infinite?: boolean;
 }
 
-// Use the interface as the component's prop type
 const Typewriter: React.FC<TypewriterProps> = ({
-    text,
-    delay,
-    infinite = true,
+  text,
+  delay = 100,
+  infinite = true,
 }) => {
-    const [currentText, setCurrentText] = useState('');
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isDeleting, setIsDeleting] = useState(false);
-    const [isFlashing, setIsFlashing] = useState(false); // State for flash effect
+  const [displayText, setDisplayText] = useState('');
+  const [index, setIndex] = useState(0);
+  const [copied, setCopied] = useState(false);
 
-    // Typing and deleting effect
-    useEffect(() => {
-        let timeout: NodeJS.Timeout;
+  useEffect(() => {
+    if (index < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText((prev) => prev + text[index]);
+        setIndex((prev) => prev + 1);
+      }, delay);
 
-        if (!isDeleting && currentIndex < text.length) {
-            // Typing effect
-            timeout = setTimeout(() => {
-                setCurrentText((prevText) => prevText + text[currentIndex]);
-                setCurrentIndex((prevIndex) => prevIndex + 1);
-            }, delay);
-        } else if (isDeleting && currentIndex > 0) {
-            // Deleting effect
-            timeout = setTimeout(() => {
-                setCurrentText((prevText) => prevText.slice(0, -1));
-                setCurrentIndex((prevIndex) => prevIndex - 1);
-            }, delay);
-        } else if (currentIndex === text.length) {
-            // Pause before deleting
-            timeout = setTimeout(() => {
-                if (infinite) setIsDeleting(true);
-            }, 5000); // 5-second pause
-        } else if (isDeleting && currentIndex === 0) {
-            // Reset and start typing again if infinite
-            setIsDeleting(false);
-        }
+      return () => clearTimeout(timeout);
+    } else if (infinite) {
+      const reset = setTimeout(() => {
+        setDisplayText('');
+        setIndex(0);
+      }, 3000);
+      return () => clearTimeout(reset);
+    }
+  }, [index, text, delay, infinite]);
 
-        return () => clearTimeout(timeout);
-    }, [currentIndex, delay, isDeleting, text, infinite]);
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
-    // Copy text to clipboard and trigger flash effect
-    const handleCopy = () => {
-        navigator.clipboard.writeText(text);
-        setIsFlashing(true);
-
-        // Remove flash effect after 0.2 seconds to match animation duration
-        setTimeout(() => setIsFlashing(false), 200);
-    };
-
-    return (
-        <div
-            className={`bg-gray-900 border border-gray-700 rounded-lg p-4 shadow-lg mt-6 cursor-pointer ${isFlashing ? 'animate-flash' : ''
-                }`}
-            onClick={handleCopy}
-            title='Click to copy to clipboard'
-        >
-            <p className='font-mono text-sm text-gray-300 leading-6 first-line:font-medium first-line:text-gray-200 indent-4'>
-                {currentText}
-                <span className='inline-block bg-gray-300 w-[1ch] animate-blink ml-1'></span>
-            </p>
-        </div>
-    );
+  return (
+    <div
+      onClick={handleCopy}
+      title='Click to copy'
+      aria-live='polite'
+      className={`bg-neutral-2 border border-neutral-4 rounded-lg p-4 shadow-lg mt-6 cursor-pointer select-none transition ${
+        copied ? 'animate-flash' : ''
+      }`}
+    >
+      <p className='font-mono text-sm text-neutral-6 leading-6 first-line:font-medium first-line:text-neutral-8 indent-4'>
+        {displayText}
+        <span className='ml-1 inline-block w-[0.6ch] bg-neutral-6 animate-blink align-baseline'>
+          &nbsp;
+        </span>
+      </p>
+    </div>
+  );
 };
 
 export default Typewriter;

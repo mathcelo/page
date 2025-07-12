@@ -9,29 +9,29 @@ const Home = () => {
 
   return (
     <div className='min-h-screen flex flex-col items-center justify-center p-8 sm:p-20 text-center gap-16'>
-      {/* Profile Picture with Original Styling */}
+      {/* Profile Picture with Image Swap and Lightning */}
       <div
-        className='relative w-[180px] h-[180px] mb-4 group rounded-full'
+        className='relative w-[180px] h-[180px] mb-4 group rounded-full overflow-hidden'
         style={{
           background: 'linear-gradient(to right, #BCB384 50%, #d3ccad 50%)',
-          cursor: 'url(/zenitsu_cur.png), auto', // Custom cursor when hovering
+          cursor: 'url(/zenitsu_cur.png), auto',
         }}
       >
+        {/* Static Image */}
         <Image
           src={staticImage}
           alt='Picture of Marcelo'
-          layout='fill'
-          objectFit='contain'
-          objectPosition='center'
-          className='rounded-full shadow-lg border-4 border-gray-300 opacity-100 group-hover:opacity-0 transition-opacity duration-500 ease-in-out'
+          fill
+          className='object-contain object-center rounded-full shadow-lg border-4 border-neutral-4 opacity-100 group-hover:opacity-0 transition-opacity duration-500 ease-in-out'
         />
+        {/* Animated Image */}
         <Image
           src={animatedImage}
           alt='Animated Picture of Marcelo'
-          layout='fill'
-          objectFit='cover'
-          className='rounded-full shadow-lg border-4 border-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out'
+          fill
+          className='object-cover rounded-full shadow-lg border-4 border-neutral-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out'
         />
+        {/* Lightning Overlay */}
         <div
           className='absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out'
           style={{
@@ -42,23 +42,22 @@ const Home = () => {
         ></div>
       </div>
 
-      {/* Main Content including Introduction and Contact Section */}
-      <main className='max-w-md text-white/90 leading-relaxed tracking-wide animate-fadeIn delay-300'>
-        <h1 className='text-3xl font-extrabold mb-6 text-gray-200'>
+      {/* Main Content */}
+      <main className='max-w-md text-neutral-7 leading-relaxed tracking-wide animate-fadeIn delay-300'>
+        <h1 className='text-3xl font-extrabold mb-6 text-neutral-8'>
           Hello there!
         </h1>
 
-        {/* Styled Paragraphs with more spacing and softer secondary text */}
-        <p className='text-lg font-normal leading-8 text-gray-300 first-letter:text-2xl first-letter:font-semibold first-letter:text-gray-400 indent-6 mb-4'>
-          I am <span className='text-cyan-400 font-medium'>Marcelo</span>, I
-          will be a fourth year PhD student at The Ohio State University.
+        <p className='text-lg leading-8 first-letter:text-2xl first-letter:font-semibold first-letter:text-neutral-5 indent-6 mb-4 text-neutral-6'>
+          I am <span className='text-primary-1 font-medium'>Marcelo</span>. I
+          will be a fourth-year PhD student at The Ohio State University.
           <br />
           <br />
           As part of the W3CIL lab, I focus on exploring innovative aspects of
           cybersecurity and blockchain under the mentorship of{' '}
           <a
             href='https://carteryagemann.com/'
-            className='text-gray-400 font-medium hover:text-gray-300 transition-all duration-300 ease-in-out'
+            className='text-neutral-5 font-medium hover:text-neutral-4 transition-all duration-300 ease-in-out'
             target='_blank'
             rel='noopener noreferrer'
           >
@@ -67,12 +66,12 @@ const Home = () => {
           .
         </p>
 
-        <p className='text-lg font-normal leading-8 text-gray-300 indent-6 mb-4'>
-          In 2022, I earned my bachelor&apos;s degree at Ohio University, where
-          I had the privilege of working under the guidance of{' '}
+        <p className='text-lg leading-8 indent-6 mb-4 text-neutral-6'>
+          In 2022, I earned my bachelor's degree at Ohio University, where I had
+          the privilege of working under the guidance of{' '}
           <a
-            href='https://www.ohio.edu/engineering/about/people/chenji'
-            className='text-gray-400 font-medium hover:text-gray-300 transition-all duration-300 ease-in-out'
+            href='https://www.hchenji.com/'
+            className='text-neutral-5 font-medium hover:text-neutral-4 transition-all duration-300 ease-in-out'
             target='_blank'
             rel='noopener noreferrer'
           >
@@ -81,34 +80,33 @@ const Home = () => {
           .
         </p>
 
-        <p className='text-lg font-normal leading-8 text-gray-300 indent-6 mb-4'>
-          I’m excited to share my{' '}
+        {/* ✅ Updated Wording Here */}
+        <p className='text-lg leading-8 indent-6 mb-4 text-neutral-6'>
+          You can learn more about my{' '}
           <a
             href='/about'
-            className='text-gray-400 font-medium hover:text-gray-300 transition-all duration-300 ease-in-out'
+            className='text-neutral-5 font-medium hover:text-neutral-4 transition-all duration-300 ease-in-out'
           >
-            background
+            academic and professional journey
           </a>{' '}
-          and{' '}
+          or explore my{' '}
           <a
             href='/research'
-            className='text-gray-400 font-medium hover:text-gray-300 transition-all duration-300 ease-in-out'
+            className='text-neutral-5 font-medium hover:text-neutral-4 transition-all duration-300 ease-in-out'
           >
-            research interests
-          </a>{' '}
-          with you as I continue on this journey.
+            research and publications
+          </a>
+          . I’m also working on launching a blog to share ideas and reflections
+          along the way.
         </p>
 
-        {/* Divider Line */}
-        <hr className='border-t border-gray-600 my-8' />
+        <hr className='border-t border-neutral-4 my-8' />
 
-        {/* Contact Section with Typing Effect and LinkedIn Icon */}
-        <div className='mt-8 text-lg font-normal leading-7 text-gray-300 tracking-wide bg-slate-800/70 p-4 rounded-lg border border-gray-700'>
-          <p className='mb-2 text-gray-300'>
-            Get in touch, send me an email at:
-          </p>
+        {/* Contact Block */}
+        <div className='mt-8 text-lg leading-7 tracking-wide bg-neutral-2/70 p-4 rounded-lg border border-neutral-4 text-neutral-6'>
+          <p className='mb-2'>Get in touch, send me an email at:</p>
           <div title='Click to copy email to clipboard'>
-            <Typewriter text={email} delay={200} infinite={true} />
+            <Typewriter text={email} delay={200} infinite />
           </div>
         </div>
       </main>
