@@ -1,0 +1,48 @@
+import Publication from '../components/Publication';
+
+## Research
+
+My research focuses on blockchain security, smart contract analysis, and malware detection.
+
+---
+
+## Publications
+
+export const publications = [
+  {
+    type: 'inproceedings',
+    author: [
+      'Zhuo Zhang',
+      'Zhiqiang Lin',
+      'Marcelo Morales',
+      'Xiangyu Zhang',
+      'Kaiyuan Zhang',
+    ],
+    title:
+      'Your Exploit is Mine: Instantly Synthesizing Counterattack Smart Contract',
+    booktitle: '32nd USENIX Security Symposium (USENIX Security 23)',
+    year: 2023,
+    isbn: '978-1-939133-37-3',
+    address: 'Anaheim, CA',
+    pages: '1757-1774',
+    url: 'https://www.usenix.org/conference/usenixsecurity23/presentation/zhang-zhuo-exploit',
+    publisher: 'USENIX Association',
+    month: 'aug',
+  },
+];
+
+<div className='px-4 pb-4'>
+  {publications.map((pub, index) => (
+    <Publication
+      key={index}
+      title={pub.title}
+      authors={pub.author}
+      booktitle={pub.booktitle}
+      year={pub.year}
+      address={pub.address}
+      url={pub.url}
+      publisher={pub.publisher}
+      pages={pub.pages}
+    />
+  ))}
+</div>
