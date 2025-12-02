@@ -10,9 +10,15 @@ tags:
 A year ago, one of my friends showed me Advent of Code. However, since there were only a few days left in the event, 
 I decided to wait until the next year to give it a shot. This year, I decided to give it a try, and I'm glad I did.
 
-I will be updating this blog post with my solutions to the puzzles as I complete them. 
+I will be updating this blog post with my solutions to the puzzles as I complete them. You can find all my solutions on [GitHub](https://github.com/mathcelo/adventOfCode).
 
 For now, I've opted to use Python to solve the puzzles. However, I may switch to a different language if I decide to learn a new language.
+
+## Days
+
+- [Day 1: Secret Entrance](#day-1-secret-entrance)
+
+---
 
 ## Day 1: Secret Entrance
 
@@ -39,7 +45,6 @@ This way, we can easily parse the instructions from the input file.
 Next, I created a function to represent a move in the dial. Since we know the dial loops around in both directions, we can model these operations using modular arithmetic:
 - Left moves are equivalent to subtracting the distance from the current position,
 - Right moves are equivalent to adding the distance to the current position.
-
 ```python
 def move(position: int, direction: Direction, distance: int) -> int:
     if direction == Direction.L:
@@ -61,3 +66,44 @@ def solve(instructions: list[Instruction]) -> int:
 ```
 
 Running the code with the input file, we get the answer to the puzzle is 1081.
+
+### Part 2
+
+The puzzle is the same as the previous one, but this time we need to find the number of times the dial passed through the number 0.
+
+The `move` function has been modified a bit. It now looks like this:
+```python
+def move(position: int, instruction: Instruction) -> tuple[int, int]:
+    """Return (new_position, zero_hits) for a single rotation."""
+    delta = (
+        -instruction.distance
+        if instruction.direction == Direction.L
+        else instruction.distance
+    )
+    end_position = position + delta
+    zero_hits = count_zero_hits(position, end_position)
+    return end_position % MODULUS, zero_hits
+```
+
+Now, we first calculate a delta value based on the instruction. Then, we calculate the new position by adding the delta to the current position. 
+
+The reason for this is because we need to know the number of times the dial passed through 0. If we calculated just using modulus, we wouldn't be able to count how many times we passed through 0. For example, say an instruction says `R300`. The modulus would detect that we went over 0, but not how many times.
+
+For this we can use the function `count_zero_hits` which looks like this:
+```python
+def count_zero_hits(start: int, end: int) -> int:
+    """Count how many clicks land on 0 while moving from start to end."""
+    if start == end:
+        return 0
+
+    if start < end:
+        return end // MODULUS - start // MODULUS
+
+    return (start - 1) // MODULUS - (end - 1) // MODULUS
+```
+
+This function calculates how many times the dial passed through 0 by using integer division with the modulus.
+
+If the start and end positions are the same, we haven't moved, so we return 0. For positive movement, we calculate `end // MODULUS - start // MODULUS`. For negative movement, we adjust by subtracting 1 before dividing to account for the direction.
+
+Running the code with the input file, we get the answer to the puzzle is 6689.
