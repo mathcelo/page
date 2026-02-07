@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Typewriter from './components/Typewriter';
 
 const Home = () => {
-  const staticImage = '/me.png';
-  const animatedImage = '/me_animated.png';
+  const staticImage = '/profile.png';
+  const animatedImage = '/profile-animated.png';
   const lightningGif = '/lightning.webp';
   const email = 'morales.374@osu.edu';
 
@@ -14,7 +14,7 @@ const Home = () => {
         className='relative w-[180px] h-[180px] mb-4 group rounded-full overflow-hidden'
         style={{
           background: 'linear-gradient(to right, #BCB384 50%, #d3ccad 50%)',
-          cursor: 'url(/zenitsu_cur.png), auto',
+          cursor: 'url(/zenitsu-cursor.png), auto',
         }}
       >
         {/* Static Image */}
