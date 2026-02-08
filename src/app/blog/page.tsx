@@ -41,16 +41,16 @@ export default function BlogIndexPage(): React.ReactElement {
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-neutral-1 to-neutral-2'>
-      <div className='max-w-5xl mx-auto px-4 py-12'>
+      <div className='max-w-2xl mx-auto px-4 py-12'>
         <header className='text-center mb-12'>
           <p className='text-neutral-6 text-lg max-w-2xl mx-auto'>
-            Thoughts, insights, and notes from my journey in security,
-            cryptography, and computing.
+            Thoughts, insights, and notes on security, software, and
+            whatever else catches my interest.
           </p>
         </header>
 
-        <div className='grid gap-8'>
-          {posts.map((post, index) => (
+        <div className='grid gap-4'>
+          {posts.map((post) => (
             <BlogPostCard
               key={post.slug}
               slug={post.slug}
@@ -58,7 +58,6 @@ export default function BlogIndexPage(): React.ReactElement {
               date={post.date}
               excerpt={post.excerpt}
               tags={post.tags}
-              displayIndex={index + 1}
             />
           ))}
         </div>
