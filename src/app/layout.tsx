@@ -36,7 +36,13 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-b from-neutral-1 via-neutral-1 to-neutral-2 text-neutral-8`}
+        className={[
+          geistSans.variable,
+          geistMono.variable,
+          'antialiased bg-gradient-to-b',
+          'from-neutral-1 via-neutral-1 to-neutral-2',
+          'text-neutral-8',
+        ].join(' ')}
       >
         <div className='min-h-screen flex flex-col'>
           {/* Header */}

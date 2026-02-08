@@ -10,7 +10,12 @@ export default function BlogIndexPage(): React.ReactElement {
 
   if (!fs.existsSync(blogDir)) {
     return (
-      <div className='min-h-screen bg-gradient-to-br from-neutral-1 to-neutral-2 flex items-center justify-center'>
+      <div
+        className={[
+          'min-h-screen flex items-center justify-center',
+          'bg-gradient-to-br from-neutral-1 to-neutral-2',
+        ].join(' ')}
+      >
         <div className='text-center'>
           <h1 className='text-4xl font-bold text-neutral-7 mb-4'>Blog</h1>
           <p className='text-neutral-5 text-lg'>
@@ -37,10 +42,14 @@ export default function BlogIndexPage(): React.ReactElement {
         tags: (data.tags || []) as string[],
       };
     })
-    .sort((postA, postB) => new Date(postB.date).getTime() - new Date(postA.date).getTime());
+    .sort((postA, postB) => {
+      return new Date(postB.date).getTime() - new Date(postA.date).getTime();
+    });
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-neutral-1 to-neutral-2'>
+    <div
+      className='min-h-screen bg-gradient-to-br from-neutral-1 to-neutral-2'
+    >
       <div className='max-w-2xl mx-auto px-4 py-12'>
         <header className='text-center mb-12'>
           <p className='text-neutral-6 text-lg max-w-2xl mx-auto'>

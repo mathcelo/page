@@ -14,44 +14,42 @@ interface PublicationProps {
   highlightName?: string; // Name to be highlighted
 }
 
-const Publication: React.FC<PublicationProps> = ({
-  title,
-  authors,
-  booktitle,
-  year,
-  address,
-  url,
-  highlightName = 'Marcelo Morales',
-}) => {
-  const formattedAuthors = authors.map((author, position) => (
+const DEFAULT_HIGHLIGHT_NAME = 'Marcelo Morales';
+
+const Publication: React.FC<PublicationProps> = (props) => {
+  const highlightName = props.highlightName ?? DEFAULT_HIGHLIGHT_NAME;
+
+  const formattedAuthors = props.authors.map((author, position) => (
     <span
       key={author}
-      className={author === highlightName ? 'font-bold text-neutral-8' : ''}
+      className={
+        author === highlightName ? 'font-bold text-neutral-8' : ''
+      }
     >
       {author}
-      {position < authors.length - 1 ? ', ' : ''}
+      {position < props.authors.length - 1 ? ', ' : ''}
     </span>
   ));
 
   return (
     <div className='mb-6'>
       <h3 className='text-lg font-semibold text-neutral-8'>
-        {url ? (
+        {props.url ? (
           <a
-            href={url}
+            href={props.url}
             target='_blank'
             rel='noopener noreferrer'
             className='hover:text-primary-1 transition duration-300'
           >
-            {title}
+            {props.title}
           </a>
         ) : (
-          title
+          props.title
         )}
       </h3>
       <p className='text-md text-neutral-6'>{formattedAuthors}</p>
       <p className='text-sm italic text-neutral-5'>
-        {booktitle}, {year}, {address}
+        {props.booktitle}, {props.year}, {props.address}
       </p>
     </div>
   );

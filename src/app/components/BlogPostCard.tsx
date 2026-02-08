@@ -18,9 +18,22 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
 }) => {
   return (
     <Link href={`/blog/${slug}`}>
-      <article className='border border-neutral-3/60 rounded-lg p-5 transition-colors duration-200 hover:bg-neutral-2'>
-        <div className='flex items-baseline justify-between gap-4 mb-1'>
-          <h2 className='text-lg font-semibold text-neutral-8 hover:text-primary-1 transition-colors duration-200'>
+      <article
+        className={[
+          'border border-neutral-3/60 rounded-lg p-5',
+          'transition-colors duration-200 hover:bg-neutral-2',
+        ].join(' ')}
+      >
+        <div
+          className='flex items-baseline justify-between gap-4 mb-1'
+        >
+          <h2
+            className={[
+              'text-lg font-semibold text-neutral-8',
+              'hover:text-primary-1',
+              'transition-colors duration-200',
+            ].join(' ')}
+          >
             {title || slug}
           </h2>
           <time className='text-neutral-5 text-sm shrink-0'>

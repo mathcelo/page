@@ -44,7 +44,12 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 }
 
 // Reads and parses a blog post by slug
-async function getBlogPost(slug: string): Promise<{ content: string; data: Record<string, string> } | null> {
+interface BlogPost {
+  content: string;
+  data: Record<string, string>;
+}
+
+async function getBlogPost(slug: string): Promise<BlogPost | null> {
   const filePath = path.join(BLOG_CONTENT_DIRECTORY, `${slug}.mdx`);
   if (!fs.existsSync(filePath)) return null;
 
