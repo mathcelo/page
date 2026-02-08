@@ -20,8 +20,8 @@ const Typewriter: React.FC<TypewriterProps> = ({
   useEffect(() => {
     if (index < text.length) {
       const timeout = setTimeout(() => {
-        setDisplayText((prev) => prev + text[index]);
-        setIndex((prev) => prev + 1);
+        setDisplayText((previous) => previous + text[index]);
+        setIndex((previous) => previous + 1);
       }, delay);
 
       return () => clearTimeout(timeout);
@@ -34,7 +34,7 @@ const Typewriter: React.FC<TypewriterProps> = ({
     }
   }, [index, text, delay, infinite]);
 
-  const handleCopy = () => {
+  const handleCopy = (): void => {
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);

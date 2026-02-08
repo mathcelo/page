@@ -1,12 +1,13 @@
+import React from 'react';
 import Image from 'next/image';
 import Typewriter from './components/Typewriter';
 
-const Home = () => {
-  const staticImage = '/profile.png';
-  const animatedImage = '/profile-animated.png';
-  const lightningGif = '/lightning.webp';
-  const email = 'morales.374@osu.edu';
+const PROFILE_IMAGE = '/profile.png';
+const PROFILE_ANIMATED_IMAGE = '/profile-animated.png';
+const LIGHTNING_OVERLAY = '/lightning.webp';
+const CONTACT_EMAIL = 'morales.374@osu.edu';
 
+const Home = (): React.ReactElement => {
   return (
     <div className='min-h-screen flex flex-col items-center justify-center p-8 sm:p-20 text-center gap-16'>
       {/* Profile Picture with Image Swap and Lightning */}
@@ -19,14 +20,14 @@ const Home = () => {
       >
         {/* Static Image */}
         <Image
-          src={staticImage}
+          src={PROFILE_IMAGE}
           alt='Picture of Marcelo'
           fill
           className='object-contain object-center rounded-full shadow-lg border-4 border-neutral-4 opacity-100 group-hover:opacity-0 transition-opacity duration-500 ease-in-out'
         />
         {/* Animated Image */}
         <Image
-          src={animatedImage}
+          src={PROFILE_ANIMATED_IMAGE}
           alt='Animated Picture of Marcelo'
           fill
           className='object-cover rounded-full shadow-lg border-4 border-neutral-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out'
@@ -35,7 +36,7 @@ const Home = () => {
         <div
           className='absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out'
           style={{
-            backgroundImage: `url(${lightningGif})`,
+            backgroundImage: `url(${LIGHTNING_OVERLAY})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -106,7 +107,7 @@ const Home = () => {
         <div className='mt-8 text-lg leading-7 tracking-wide bg-neutral-2/70 p-4 rounded-lg border border-neutral-4 text-neutral-6'>
           <p className='mb-2'>Get in touch, send me an email at:</p>
           <div title='Click to copy email to clipboard'>
-            <Typewriter text={email} delay={200} infinite />
+            <Typewriter text={CONTACT_EMAIL} delay={200} infinite />
           </div>
         </div>
       </main>

@@ -23,13 +23,13 @@ const PublicationList: React.FC = () => {
 
   useEffect(() => {
     fetch('/publications.json')
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to load publication data.');
-        return res.json();
+      .then((response) => {
+        if (!response.ok) throw new Error('Failed to load publication data.');
+        return response.json();
       })
       .then((data) => setPublications(data))
-      .catch((err) => {
-        console.error('Error loading publications data:', err);
+      .catch((fetchError) => {
+        console.error('Error loading publications data:', fetchError);
         setError('Could not load publications.');
       });
   }, []);
@@ -48,17 +48,17 @@ const PublicationList: React.FC = () => {
 
   return (
     <div className='px-4 pb-4'>
-      {publications.map((pub, index) => (
+      {publications.map((publication) => (
         <Publication
-          key={index}
-          title={pub.title}
-          authors={pub.author}
-          booktitle={pub.booktitle}
-          year={pub.year}
-          address={pub.address}
-          url={pub.url}
-          publisher={pub.publisher}
-          pages={pub.pages}
+          key={publication.title}
+          title={publication.title}
+          authors={publication.author}
+          booktitle={publication.booktitle}
+          year={publication.year}
+          address={publication.address}
+          url={publication.url}
+          publisher={publication.publisher}
+          pages={publication.pages}
         />
       ))}
     </div>

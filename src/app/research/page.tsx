@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import ResearchContent from './research.mdx'; // This imports the MDX as a React component
-import { mdxComponents } from '../mdx-components';
+import { mdxComponents } from '@/app/mdx-components';
 
 const Research: React.FC = () => {
   return (

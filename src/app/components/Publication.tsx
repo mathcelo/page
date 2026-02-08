@@ -23,13 +23,13 @@ const Publication: React.FC<PublicationProps> = ({
   url,
   highlightName = 'Marcelo Morales',
 }) => {
-  const formattedAuthors = authors.map((author, index) => (
+  const formattedAuthors = authors.map((author, position) => (
     <span
-      key={index}
+      key={author}
       className={author === highlightName ? 'font-bold text-neutral-8' : ''}
     >
       {author}
-      {index < authors.length - 1 ? ', ' : ''}
+      {position < authors.length - 1 ? ', ' : ''}
     </span>
   ));
 
