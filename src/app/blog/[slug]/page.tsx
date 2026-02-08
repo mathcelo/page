@@ -68,7 +68,7 @@ export default async function BlogPostPage({
   return (
     <article className='prose prose-invert mx-auto p-4'>
       <h1 className='text-4xl font-bold mb-4'>{post.data.title}</h1>
-      <time className='text-neutral-500 mb-6 block'>
+      <time className='text-neutral-5 mb-6 block'>
         {new Date(post.data.date).toLocaleDateString()}
       </time>
       <MDXRemote

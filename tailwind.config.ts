@@ -48,6 +48,12 @@ const config: Config = {
           2: "#22d3ee",  // cyan-400
         },
 
+        // === Profile gradient
+        profile: {
+          1: "#BCB384",
+          2: "#d3ccad",
+        },
+
         // === Others
         discount: "#22c55e", // green-500
         link: "#0ea5e9",     // sky-500

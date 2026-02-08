@@ -12,9 +12,8 @@ const Home = (): React.ReactElement => {
     <div className='min-h-screen flex flex-col items-center justify-center p-8 sm:p-20 text-center gap-16'>
       {/* Profile Picture with Image Swap and Lightning */}
       <div
-        className='relative w-[180px] h-[180px] mb-4 group rounded-full overflow-hidden'
+        className='relative w-[180px] h-[180px] mb-4 group rounded-full overflow-hidden bg-gradient-to-r from-profile-1 to-profile-2'
         style={{
-          background: 'linear-gradient(to right, #BCB384 50%, #d3ccad 50%)',
           cursor: 'url(/zenitsu-cursor.png), auto',
         }}
       >
