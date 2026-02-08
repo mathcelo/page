@@ -33,8 +33,8 @@ const Entry: React.FC<EntryProps> = ({
       </div>
       {descriptions && (
         <ul className='mt-2 ml-4 list-disc list-outside text-sm text-neutral-6 space-y-1'>
-          {descriptions.map((description, index) => (
-            <li key={index}>{description}</li>
+          {descriptions.map((description) => (
+            <li key={description}>{description}</li>
           ))}
         </ul>
       )}
