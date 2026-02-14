@@ -7,3 +7,189 @@ tags:
   - 3D-Printer
 ---
 
+## Introduction
+
+Do you know someone who loves Puerto Rico and want to gift them a puzzle map?
+
+If you just want to make your own, check out the
+[GitHub repo](https://github.com/mathcelo/boricua-blocks).
+
+Well, you're in luck! I was in that exact situation but couldn't find one anywhere. So I did
+what any reasonable person would do: I decided to build one from scratch and 3D print it.
+
+The vision: a frame shaped like the island, with each of Puerto Rico's 78 municipalities as
+an individual puzzle piece that could be assembled one at a time.
+
+Let me walk you through the process.
+
+## The Design Process
+
+Two weeks before Valentine's Day. That's when I decided to make this gift. "How hard can it
+be?" Spoiler: pretty hard when you've never designed anything in Fusion 360 and the clock is
+ticking.
+
+I installed Fusion 360 on my laptop, opened it, and stared at the interface. I had absolutely
+no idea what I was doing. Night one was spent watching YouTube tutorials. The software could
+do incredible things, none of which I could pull off in two weeks. I found guides on tracing
+shapes. Maybe this could work? Then reality hit: Puerto Rico has 78 municipalities. And if
+this was going to be a puzzle, each piece needed to fit perfectly. Hand-tracing wasn't just
+tedious. It was a recipe for disaster. Two nights in, I admitted defeat. At least for this
+approach.
+
+Maybe I could just... buy one? I searched online for a finished product. Nothing. Not a single
+Puerto Rico puzzle map for sale anywhere. Great. Now I *had* to figure this out.
+
+Here's the thing: I'm a programmer. And there's this running joke in programming: "why spend
+10 minutes doing something manually when you can spend 10 hours automating it?" The math
+didn't quite work here, but the principle stood. New plan: grab images of each municipality,
+use a Python library to trace them, convert to STL files. Easy peasy. Except it wasn't. The
+images I found were different scales, low resolution, and even if I scraped all 78, I'd still
+have to verify every single one. The clock was still ticking. Not the way.
+
+Day three. Hour three. And then it finally clicked. I was overengineering this. All I needed
+were coordinates, the actual border points of each municipality. Google Maps shows these
+borders. They had to exist somewhere as data I could use. All I had to do was find them.
+
+A quick Google search: "puerto rico coordinates api github." The results loaded.
+
+Second link: [atlaspr](https://github.com/miguelrios/atlaspr)
+
+I stared at the URL. Something about it felt familiar. And then it hit me.
+
+A couple of years ago, the person this gift was meant for had asked me how GitHub worked. I explained
+repositories and version control. She was trying to access a repo with coordinates of Puerto Rico for
+a school project she was working on.
+
+This repo.
+
+The same exact data she had used years ago was now going to help me create their Valentine's
+Day gift. I couldn't have made this up even if I tried. I clicked the link, grinning like
+an idiot.
+
+
+I dove into the repo. The data was there: GeoJSON files with coordinates for all 78
+municipalities. Perfect.
+
+Now I just needed to turn those coordinates into something I could actually use. Time to write 
+some Python.
+
+But remember, time crunch. Two weeks total. One week for shipping. I was already on day three. 
+The clock was ticking.
+
+I'd been using Claude Code at work for tasks where I know what needs to be done, but here I
+was completely new to GeoJSON. So I used it to speed things up, basically as an
+English-to-Python compiler. I wrote out exactly what I needed: load the GeoJSON, extract
+polygon coordinates for each municipality, handle both simple polygons and complex
+MultiPolygons, and export everything as SVG files. Claude turned that into working Python.
+
+I ran the script in the terminal.
+
+It worked. One SVG for the full island. Seventy-eight more for each municipality.
+
+## From Flat Files to 3D Reality
+
+
+I had my SVGs. Seventy-nine files: one for the full island, seventy-eight for each
+municipality. Clean vector graphics, perfectly traced boundaries.
+
+But SVGs are flat. And I needed to print this thing in three dimensions.
+
+The puzzle design: a frame with 8mm tall walls outlining each municipality, and pieces at
+7.5mm tall that fit inside with a bit of clearance. But here's the thing, the pieces needed
+to be smaller than the frame cutouts. Otherwise they'd be the exact same size as the holes
+and would never fit.
+
+The tricky part? The walls aren't solid shapes. They're the *boundaries* between
+municipalities. I needed to take each polygon's outline, give it thickness, and extrude it
+upward.
+
+I'll admit, this entire part was done by Claude. I'd never used Shapely or Trimesh before.
+But I knew what I needed, so I used Claude as my English-to-Python compiler again. Extract
+boundaries, buffer them to create wall thickness, merge overlapping walls, clip to the
+island outline, extrude to 3D. For the pieces: shrink each municipality inward for tolerance
+so they'd actually fit in the frame, then extrude to a slightly shorter height.
+
+Claude turned that into working code. I ran the script. Seventy-nine STL files appeared: one
+frame, seventy-eight puzzle pieces.
+
+I opened the frame file in my 3D slicer. It looked exactly like Puerto Rico, with every
+municipality carved out as a precise cutout.
+
+This was actually going to work.
+
+![Puzzle pieces and frame in slicer](/blog/boricua-blocks/slicer-preview.jpeg)
+
+
+
+## 3D Printing
+
+At this point it felt like I was on the homestretch. Day 4 was dedicated to printing.
+
+Quick clarification: when I say "days," I mean nights. Nights after work, after socializing,
+after everything else. These weren't marathon coding sessions. These were stolen hours where
+I couldn't afford to waste a single minute.
+
+Anyway, the printing. I fired up my Bambu P1S and started with the towns. Halfway through
+the first batch, pieces started flying off the bed. I tried switching to "silence mode" to
+slow things down and ensure better adhesion, but that didn't work either. I cleaned the bed
+with isopropyl alcohol. Still nothing.
+
+The clock was ticking and I was running out of time. One of my friends suggested using dish
+soap to clean the bed. At that point, I was desperate enough to try anything. I scrubbed the
+bed with dish soap, rinsed it, dried it, and loaded up another print.
+
+And it worked! He was right! So now before any future print, I clean the bed with dish soap.
+
+![Printing the pieces](/blog/boricua-blocks/printing-pieces.jpeg)
+
+For the frame, I didn't want the pieces falling out, so I designed it with a backdrop. That
+way the puzzle could be lifted and moved around without everything scattering.
+
+![Printing the frame](/blog/boricua-blocks/printing-frame.jpeg)
+
+*(I did a horrible job documenting this project. These are screenshots from the timelapse.
+Note to self: take more pictures next time.)*
+
+Here is what it looks like assembled!
+![Finished puzzle](/blog/boricua-blocks/finished-puzzle.jpeg)     
+
+## Assembly and Shipping
+
+With all the pieces printed, it was time to put everything together. Most pieces fit
+perfectly into the frame, but two needed some sanding to fit properly. Nothing major, just a
+bit of hand filing to get them to slide in smoothly.
+
+Once everything was assembled, I vacuum-sealed the whole thing to make sure no pieces would
+fall out during shipping. I also grabbed two designs from MakerWorld, a box and a stand for
+the puzzle, and printed those on day 6.
+
+Day 7 was shipping day! Or so I thought. I showed up at the post office only to discover
+they close at 3pm on Saturdays. So I had to wait until Monday. Valentine's Day was on
+Saturday.
+
+The package arrived on Thursday. Crisis averted!
+
+## Reflections
+
+The best learning comes when you don't expect it. Every once in a while I try to learn
+something out of interest, but the learning that comes from random projects like this is
+what keeps me amazed and wanting to keep going.
+
+For V1, I'm pretty happy with how it turned out. Next time I think I'd like to use magnets
+to make sure the towns don't fall out instead of relying on gravity alone, this will also
+help with moving the puzzle around. But that's a future improvement.
+
+As for cost, mostly time. But when you're making something for someone you care about,
+there's no price on that.
+
+**Technical specs for anyone curious:**
+- Printer: Bambu P1S
+- Material: Generic PLA
+- Settings: All defaults
+- Print time: The frame printed individually, all town pieces printed simultaneously
+  (took about 4 attempts to get them all right)
+- Assembly: 5-10 minutes since they printed in the right order, just moved them one at a
+  time. Would have been a different story if they were scattered!
+
+If you want to create your own, feel free to check out the
+[GitHub repo](https://github.com/mathcelo/boricua-blocks).
