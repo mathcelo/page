@@ -1,7 +1,7 @@
 ---
 title: Boricua Blocks
 date: 2026-02-14
-excerpt: 
+excerpt: A 3D-Printed Puzzle Map of Puerto Rico
 tags:
   - fun
   - 3D-Printer
@@ -9,24 +9,35 @@ tags:
 
 ## Introduction
 
-Do you know someone who loves Puerto Rico and want to gift them a puzzle map?
+What do you gift someone who loves Puerto Rico?
 
-If you just want to make your own, check out the
+I wanted something meaningful. Not just symbolic, but interactive. A puzzle map of Puerto
+Rico, with each of the island's 78 municipalities as its own piece.
+
+I couldn't find one.
+
+So I built it.
+
+What started as a simple gift idea turned into a design and 3D printing project:
+
+* A frame shaped like the island
+* 78 individually modeled municipalities
+* Half a dozen test prints to get it right
+
+It became more than a gift. It became a design challenge and a reminder that sometimes if
+you can't find what you want, you build it.
+
+If you're curious about the process (or want to make one yourself), check out the
 [GitHub repo](https://github.com/mathcelo/boricua-blocks).
 
-Well, you're in luck! I was in that exact situation but couldn't find one anywhere. So I did
-what any reasonable person would do: I decided to build one from scratch and 3D print it.
-
-The vision: a frame shaped like the island, with each of Puerto Rico's 78 municipalities as
-an individual puzzle piece that could be assembled one at a time.
-
-Let me walk you through the process.
+Let me walk you through how it came together.
 
 ## The Design Process
 
-Two weeks before Valentine's Day. That's when I decided to make this gift. "How hard can it
-be?" Spoiler: pretty hard when you've never designed anything in Fusion 360 and the clock is
-ticking.
+I had the idea at the start of the year. Plenty of time, right? Except I didn't check the
+calendar. By the time I actually sat down to start, Valentine's Day was two weeks away, and
+one of those weeks was for shipping. "How hard can it be?" Spoiler: pretty hard when you've
+never designed anything in Fusion 360 and the clock is ticking.
 
 I installed Fusion 360 on my laptop, opened it, and stared at the interface. I had absolutely
 no idea what I was doing. Night one was spent watching YouTube tutorials. The software could
@@ -56,9 +67,9 @@ Second link: [atlaspr](https://github.com/miguelrios/atlaspr)
 
 I stared at the URL. Something about it felt familiar. And then it hit me.
 
-A couple of years ago, the person this gift was meant for had asked me how GitHub worked. I explained
-repositories and version control. She was trying to access a repo with coordinates of Puerto Rico for
-a school project she was working on.
+A couple of years ago, the person this gift was meant for had asked me how GitHub worked.
+I explained repositories and version control. She was trying to access a repo with
+coordinates of Puerto Rico for a school project she was working on.
 
 This repo.
 
@@ -129,23 +140,44 @@ Quick clarification: when I say "days," I mean nights. Nights after work, after 
 after everything else. These weren't marathon coding sessions. These were stolen hours where
 I couldn't afford to waste a single minute.
 
-Anyway, the printing. I fired up my Bambu P1S and started with the towns. Halfway through
-the first batch, pieces started flying off the bed. I tried switching to "silence mode" to
-slow things down and ensure better adhesion, but that didn't work either. I cleaned the bed
-with isopropyl alcohol. Still nothing.
+Anyway, the printing. I fired up my Bambu P1S and started with the frame. The first version
+had no backdrop, just the outline with cutouts for each municipality. After it finished
+printing, I realized the pieces would just fall right through. Back to the drawing board.
 
-The clock was ticking and I was running out of time. One of my friends suggested using dish
-soap to clean the bed. At that point, I was desperate enough to try anything. I scrubbed the
-bed with dish soap, rinsed it, dried it, and loaded up another print.
-
-And it worked! He was right! So now before any future print, I clean the bed with dish soap.
-
-![Printing the pieces](/blog/boricua-blocks/printing-pieces.jpeg)
-
-For the frame, I didn't want the pieces falling out, so I designed it with a backdrop. That
-way the puzzle could be lifted and moved around without everything scattering.
+Version 2 added a backdrop so the puzzle could be lifted and moved around without everything
+scattering. That's the one that made it to the final version.
 
 ![Printing the frame](/blog/boricua-blocks/printing-frame.jpeg)
+
+Next up: the towns. These gave me the most trouble.
+
+The first batch was a test print using black filament. The mainland municipalities printed
+fine, but one of the smaller island pieces failed. My best guess: it was tiny and positioned
+near the edge of the print bed, so it didn't adhere properly.
+
+Since that was mostly successful, I decided to switch to a gradient green/teal filament for
+the final version. I thought the contrast would look nice. Halfway through, pieces started
+flying around. I figured it was the island placement—I had forgotten to move them away from
+the edge.
+
+Third attempt: I repositioned the islands toward the center of the bed. They still went
+flying. At this point I was convinced it was a cleaning issue. I scrubbed the bed
+extensively with isopropyl alcohol, thinking I just wasn't cleaning it properly.
+
+The clock was ticking and I was running out of time. As I was venting to a friend, he
+suggested dish soap. I was desperate enough to try anything. I even put on gloves—no way I
+was getting any grease on that bed. I scrubbed it with dish soap, rinsed it, dried it, and
+loaded up another print.
+
+It worked! But I had made a critical mistake. Since the small island failing was just a
+theory, I didn't include it in this print. When I went to print the missing town
+separately... the gradient filament made it very obvious it didn't match. I had to go for a
+fifth attempt.
+
+This time I had all the secrets: dish soap, gloves, islands centered, all pieces included.
+It finally worked.
+
+![Printing the pieces](/blog/boricua-blocks/printing-pieces.jpeg)
 
 *(I did a horrible job documenting this project. These are screenshots from the timelapse.
 Note to self: take more pictures next time.)*
@@ -189,8 +221,8 @@ that made this project possible.
 - Printer: Bambu P1S
 - Material: Generic PLA
 - Settings: All defaults
-- Print time: The frame printed individually, all town pieces printed simultaneously
-  (took about 4 attempts to get them all right)
+- Print time: Frame 4h27min (printed separately), towns 3h29min (all 78 pieces
+  printed simultaneously, took 5 attempts to get them all right)
 - Assembly: 5-10 minutes since they printed in the right order, just moved them one at a
   time. Would have been a different story if they were scattered!
 
