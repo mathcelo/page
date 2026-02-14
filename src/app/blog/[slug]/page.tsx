@@ -72,7 +72,10 @@ export default async function BlogPostPage({
 
   return (
     <article className='prose prose-invert mx-auto p-4'>
-      <h1 className='text-4xl font-bold mb-4'>{post.data.title}</h1>
+      <h1 className='text-4xl font-bold mb-2'>{post.data.title}</h1>
+      {post.data.excerpt && (
+        <p className='text-xl text-neutral-400 italic mb-4'>{post.data.excerpt}</p>
+      )}
       <time className='text-neutral-5 mb-6 block'>
         {new Date(post.data.date).toLocaleDateString()}
       </time>
