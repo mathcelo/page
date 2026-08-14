@@ -1,6 +1,6 @@
-/** Structured résumé content rendered by the home and about pages. */
+/** Structured résumé content rendered by the about page and the footer. */
 
-export interface TimelineChip {
+interface TimelineChip {
   label: string;
   highlighted: boolean;
   url?: string;
@@ -17,7 +17,7 @@ export interface TimelineEntry {
   chips: readonly TimelineChip[];
 }
 
-export interface Publication {
+interface Publication {
   venue: string;
   title: string;
   authors: readonly string[];
@@ -33,12 +33,12 @@ export interface Project {
   description: string;
 }
 
-export interface SkillGroup {
+interface SkillGroup {
   label: string;
   items: readonly string[];
 }
 
-export interface Achievement {
+interface Achievement {
   period: string;
   title: string;
   institution: string;

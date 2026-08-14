@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
+import InstitutionName from '@/app/components/InstitutionName';
 import ProfileFrame from '@/app/components/ProfileFrame';
 
 const PRIMARY_BUTTON = [
@@ -61,8 +62,9 @@ const Home = (): React.ReactElement => (
         <p className='max-w-[56ch] text-base leading-[1.7] text-copy text-pretty'>
           I work on security tooling and smart contract audits at Trail of Bits.
           My academic roots are at{' '}
-          <i className='italic'>The</i> Ohio State University, where I researched
-          blockchain security and malware detection in the W3CIL lab under{' '}
+          <InstitutionName text='The Ohio State University' />, where I
+          researched blockchain security and malware detection in the W3CIL lab
+          under{' '}
           <a
             href='https://carteryagemann.com/'
             target='_blank'

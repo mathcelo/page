@@ -10,11 +10,18 @@ interface PostImageProps {
  * `figure` because MDX nests images within paragraphs, where block elements
  * are invalid HTML.
  */
-const PostImage = ({ src, alt = '' }: PostImageProps): React.ReactElement | null => {
+const PostImage = ({
+  src,
+  alt = '',
+}: PostImageProps): React.ReactElement | null => {
   if (!src) return null;
 
   return (
     <span className='my-6 block'>
+      {/*
+        Justification: next/image buys nothing here. output: 'export' forces
+        unoptimized, and markdown gives no intrinsic dimensions for width/height.
+      */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={src}
@@ -22,7 +29,14 @@ const PostImage = ({ src, alt = '' }: PostImageProps): React.ReactElement | null
         className='block h-auto w-full rounded-lg border border-rule'
       />
       {alt && (
-        <span className='mt-2 block font-mono text-[10.5px] text-meta'>{alt}</span>
+        // aria-hidden: the same text is already the image's accessible name,
+        // so announcing it again would duplicate it.
+        <span
+          aria-hidden='true'
+          className='mt-2 block font-mono text-[10.5px] text-meta'
+        >
+          {alt}
+        </span>
       )}
     </span>
   );

@@ -12,7 +12,7 @@
 }
 
 @layer components {
-  /* Blueprint grid backdrop behind the home hero */
+  /* Blueprint grid backdrop, applied to the page body and header bands */
   .blueprint-grid {
     background-image:
       linear-gradient(theme('colors.rule-faint') 1px, transparent 1px),
