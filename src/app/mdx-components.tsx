@@ -1,6 +1,6 @@
-import type { MDXComponents } from 'mdx/types';
 import PostImage from '@/app/components/PostImage';
 
-export const mdxComponents: MDXComponents = {
+/** Element overrides applied when rendering blog post MDX. */
+export const mdxComponents = {
   img: PostImage,
 };
