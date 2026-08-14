@@ -17,6 +17,11 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ['400', '500'],
   variable: '--font-jetbrains-mono',
   display: 'swap',
+  // The metric-adjusted fallback next/font generates is backed by Arial, and
+  // because it is a real @font-face it shadows ui-monospace/Menlo entirely.
+  // The ASCII portrait needs a fixed 0.6em advance, so fall back to a genuine
+  // monospace instead.
+  adjustFontFallback: false,
 });
 
 const FAVICON =
