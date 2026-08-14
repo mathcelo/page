@@ -1,13 +1,10 @@
 import Image from 'next/image';
 import React from 'react';
 
-const PROFILE_IMAGE = '/profile.png';
-const PROFILE_ANIMATED_IMAGE = '/profile-animated.png';
+const PROFILE_IMAGE = '/profile-animated.png';
 const LIGHTNING_OVERLAY = '/lightning.webp';
 
-const LAYER_STYLE = 'object-cover transition-opacity duration-500 ease-in-out';
-
-/** Square hero portrait that swaps to its animated counterpart on hover. */
+/** Square hero portrait, with a lightning flourish on hover. */
 const ProfileFrame = (): React.ReactElement => (
   <div className='flex flex-col gap-2'>
     <div
@@ -20,15 +17,7 @@ const ProfileFrame = (): React.ReactElement => (
         fill
         sizes='260px'
         priority
-        className={`${LAYER_STYLE} opacity-100 group-hover:opacity-0`}
-      />
-      <Image
-        src={PROFILE_ANIMATED_IMAGE}
-        alt=''
-        aria-hidden='true'
-        fill
-        sizes='260px'
-        className={`${LAYER_STYLE} opacity-0 group-hover:opacity-100`}
+        className='object-cover'
       />
       <div
         aria-hidden='true'
