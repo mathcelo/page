@@ -28,7 +28,9 @@ const ProfileFrame = (): React.ReactElement => (
         style={{ backgroundImage: `url(${LIGHTNING_OVERLAY})` }}
       />
     </div>
-    <div className='font-mono text-[10.5px] text-meta'>img/marcelo.png</div>
+    <div className='text-center font-mono text-[10.5px] text-meta'>
+      img/marcelo.png
+    </div>
   </div>
 );
 
