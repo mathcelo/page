@@ -8,8 +8,7 @@ import BlogPostCard from '@/app/components/BlogPostCard';
 import SectionRow from '@/app/components/SectionRow';
 
 const BLOG_INTRO =
-  'Writing on smart contract analysis, static analysis internals, side projects, ' +
-  "and whatever I'm reading.";
+  'Occasional notes on things I build, and what I learn making them.';
 
 export const metadata: Metadata = {
   title: 'Notes',
@@ -53,7 +52,7 @@ const BlogIndexPage = (): React.ReactElement => {
       <div className='blueprint-grid border-b border-rule bg-surface'>
         <div
           className={[
-            'mx-auto max-w-shell px-5 pb-[46px] pt-[56px] compact:px-7',
+            'mx-auto w-full max-w-shell px-5 pb-[46px] pt-[56px] compact:px-7',
           ].join(' ')}
         >
           <SectionRow label='blog'>
@@ -76,7 +75,7 @@ const BlogIndexPage = (): React.ReactElement => {
 
       <div
         className={[
-          'mx-auto max-w-shell px-5 pb-[90px] pt-[60px] compact:px-7',
+          'mx-auto w-full max-w-shell px-5 pb-[90px] pt-[60px] compact:px-7',
         ].join(' ')}
       >
         <SectionRow label='posts'>
