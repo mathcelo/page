@@ -1,9 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
 import type { Metadata } from 'next';
 import React from 'react';
-import { BLOG_CONTENT_DIRECTORY } from '@/app/blog/config';
+import { listPostFilenames, readPost } from '@/app/blog/posts';
 import BlogPostCard from '@/app/components/BlogPostCard';
 import SectionRow from '@/app/components/SectionRow';
 
@@ -15,37 +12,10 @@ export const metadata: Metadata = {
   description: BLOG_INTRO,
 };
 
-interface PostSummary {
-  slug: string;
-  title: string;
-  date: string;
-  excerpt: string;
-  tags: string[];
-}
-
-const readPostSummaries = (): PostSummary[] => {
-  if (!fs.existsSync(BLOG_CONTENT_DIRECTORY)) return [];
-
-  return fs
-    .readdirSync(BLOG_CONTENT_DIRECTORY)
-    .filter((filename) => filename.endsWith('.mdx'))
-    .map((filename) => {
-      const filePath = path.join(BLOG_CONTENT_DIRECTORY, filename);
-      const { data } = matter(fs.readFileSync(filePath, 'utf8'));
-
-      return {
-        slug: filename.replace(/\.mdx$/, ''),
-        title: String(data.title ?? ''),
-        date: new Date(data.date).toISOString(),
-        excerpt: String(data.excerpt ?? data.description ?? ''),
-        tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
-      };
-    })
-    .sort((left, right) => right.date.localeCompare(left.date));
-};
-
 const BlogIndexPage = (): React.ReactElement => {
-  const posts = readPostSummaries();
+  const posts = listPostFilenames()
+    .map((filename) => readPost(filename))
+    .sort((left, right) => right.date.localeCompare(left.date));
 
   return (
     <>
@@ -79,24 +49,18 @@ const BlogIndexPage = (): React.ReactElement => {
         ].join(' ')}
       >
         <SectionRow label='posts'>
-          {posts.length > 0 ? (
-            <div className='flex flex-col border-b border-rule'>
-              {posts.map((post) => (
-                <BlogPostCard
-                  key={post.slug}
-                  slug={post.slug}
-                  title={post.title}
-                  date={post.date}
-                  excerpt={post.excerpt}
-                  tags={post.tags}
-                />
-              ))}
-            </div>
-          ) : (
-            <p className='border-y border-rule py-[26px] text-[15px] text-copy'>
-              No posts yet — check back soon.
-            </p>
-          )}
+          <div className='flex flex-col border-b border-rule'>
+            {posts.map((post) => (
+              <BlogPostCard
+                key={post.slug}
+                slug={post.slug}
+                title={post.title}
+                date={post.date}
+                excerpt={post.excerpt}
+                tags={post.tags}
+              />
+            ))}
+          </div>
         </SectionRow>
       </div>
     </>

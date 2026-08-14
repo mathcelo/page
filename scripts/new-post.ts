@@ -26,8 +26,7 @@ function generateFrontmatter(frontmatter: PostFrontmatter): string {
 title: ${frontmatter.title}
 date: ${frontmatter.date}
 excerpt: ${frontmatter.excerpt}
-tags:
-  -
+tags: []
 ---
 
 `;

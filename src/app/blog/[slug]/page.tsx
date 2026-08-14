@@ -1,6 +1,3 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -8,40 +5,26 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import React from 'react';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
-import { BLOG_CONTENT_DIRECTORY } from '@/app/blog/config';
-import { formatPostDate } from '@/app/components/BlogPostCard';
+import {
+  BLOG_CONTENT_DIRECTORY,
+  formatPostDate,
+  listPostFilenames,
+  readPostBySlug,
+  slugFromFilename,
+} from '@/app/blog/posts';
 import SectionRow from '@/app/components/SectionRow';
 import { mdxComponents } from '@/app/mdx-components';
 
-interface BlogPost {
-  content: string;
-  title: string;
-  date: string;
-  excerpt: string;
-  tags: string[];
-}
-
-const readPost = (slug: string): BlogPost | null => {
-  const filePath = path.join(BLOG_CONTENT_DIRECTORY, `${slug}.mdx`);
-  if (!fs.existsSync(filePath)) return null;
-
-  const { content, data } = matter(fs.readFileSync(filePath, 'utf8'));
-  return {
-    content,
-    title: String(data.title ?? slug),
-    date: new Date(data.date).toISOString(),
-    excerpt: String(data.excerpt ?? data.description ?? ''),
-    tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
-  };
-};
-
 export function generateStaticParams(): { slug: string }[] {
-  if (!fs.existsSync(BLOG_CONTENT_DIRECTORY)) return [];
-
-  return fs
-    .readdirSync(BLOG_CONTENT_DIRECTORY)
-    .filter((filename) => filename.endsWith('.mdx'))
-    .map((filename) => ({ slug: filename.replace(/\.mdx$/, '') }));
+  const filenames = listPostFilenames();
+  if (filenames.length === 0) {
+    // output: 'export' rejects a route whose generateStaticParams is empty,
+    // with an error that names neither this route nor the cause.
+    throw new Error(
+      `No .mdx posts in ${BLOG_CONTENT_DIRECTORY}; static export needs at least one.`
+    );
+  }
+  return filenames.map((filename) => ({ slug: slugFromFilename(filename) }));
 }
 
 export async function generateMetadata({
@@ -50,7 +33,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = readPost(slug);
+  const post = readPostBySlug(slug);
   if (!post) return {};
 
   return { title: post.title, description: post.excerpt };
@@ -62,7 +45,7 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }): Promise<React.ReactElement> {
   const { slug } = await params;
-  const post = readPost(slug);
+  const post = readPostBySlug(slug);
   if (!post) notFound();
 
   return (

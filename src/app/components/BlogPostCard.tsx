@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
+import { formatPostDate } from '@/app/blog/posts';
 import MetaRow from '@/app/components/MetaRow';
 
 interface BlogPostCardProps {
@@ -10,14 +11,6 @@ interface BlogPostCardProps {
   excerpt: string;
   tags: readonly string[];
 }
-
-export const formatPostDate = (date: string): string =>
-  new Date(date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    timeZone: 'UTC',
-  });
 
 const BlogPostCard = ({
   slug,
