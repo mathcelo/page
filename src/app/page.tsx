@@ -49,12 +49,11 @@ const Home = (): React.ReactElement => (
         </p>
 
         <p className='max-w-[56ch] text-base leading-[1.7] text-copy text-pretty'>
-          I work on smart contract analysis tooling at Trail of Bits,
-          contributing to{' '}
-          <span className='border-b-2 border-accent'>Slither</span> — a general
-          data flow engine, a reentrancy detector, and interval analysis. My
-          academic roots are at The Ohio State University, where I researched
-          blockchain security and malware detection in the W3CIL lab under{' '}
+          I work on security tooling and{' '}
+          <span className='border-b-2 border-accent'>smart contract audits</span>{' '}
+          at Trail of Bits. My academic roots are at The Ohio State University,
+          where I researched blockchain security and malware detection in the
+          W3CIL lab under{' '}
           <a
             href='https://carteryagemann.com/'
             target='_blank'
@@ -85,7 +84,7 @@ const Home = (): React.ReactElement => (
         </div>
       </div>
 
-      <div className='max-w-[200px] wide:max-w-none'>
+      <div className='mx-auto max-w-[200px] wide:mx-0 wide:max-w-none'>
         <ProfileFrame />
       </div>
     </div>
