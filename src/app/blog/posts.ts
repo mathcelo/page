@@ -23,10 +23,14 @@ export interface Post {
 const readString = (value: unknown, fallback: string): string =>
   typeof value === 'string' ? value : fallback;
 
-const readTags = (value: unknown): string[] =>
-  Array.isArray(value)
-    ? value.filter((tag): tag is string => typeof tag === 'string')
-    : [];
+const readTags = (value: unknown): string[] => {
+  if (Array.isArray(value)) {
+    return value.filter((tag): tag is string => typeof tag === 'string');
+  }
+  // A single tag written without a list is a plausible slip; keep it rather
+  // than discarding it silently.
+  return typeof value === 'string' ? [value] : [];
+};
 
 /**
  * Normalises a frontmatter date to ISO 8601.
@@ -34,12 +38,13 @@ const readTags = (value: unknown): string[] =>
  * gray-matter yields a Date for unquoted YAML dates and a string when quoted.
  * Anything unparseable throws with the filename, since a silent fallback would
  * either invent a date or fail later with no indication of which post is bad.
+ *
+ * Numbers are rejected deliberately: a bare `date: 2026` is YAML integer 2026,
+ * which Date would read as 2026 milliseconds past the epoch and render as 1970.
  */
 const readDate = (value: unknown, filename: string): string => {
   const parsed =
-    value instanceof Date ||
-    typeof value === 'string' ||
-    typeof value === 'number'
+    value instanceof Date || typeof value === 'string'
       ? new Date(value)
       : new Date(Number.NaN);
 
