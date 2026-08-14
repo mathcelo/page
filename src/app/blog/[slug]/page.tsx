@@ -1,90 +1,118 @@
-// src/app/blog/[slug]/page.tsx
-
-import React from 'react';
-import { notFound } from 'next/navigation';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { mdxComponents } from '@/app/mdx-components';
+import React from 'react';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
 import { BLOG_CONTENT_DIRECTORY } from '@/app/blog/config';
+import { formatPostDate } from '@/app/components/BlogPostCard';
+import SectionRow from '@/app/components/SectionRow';
 
-// Generates static params for all blog posts
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const directory = BLOG_CONTENT_DIRECTORY;
-
-  try {
-    if (!fs.existsSync(directory)) {
-      console.warn('Blog directory not found, returning placeholder slug');
-      // Return a placeholder to satisfy static export requirements
-      return [{ slug: 'placeholder' }];
-    }
-
-    const files = fs.readdirSync(directory);
-    const mdxFiles = files.filter((file) => file.endsWith('.mdx'));
-
-    if (mdxFiles.length === 0) {
-      console.warn(
-        'No MDX files found in blog directory, returning placeholder slug'
-      );
-      // Return a placeholder to satisfy static export requirements
-      return [{ slug: 'placeholder' }];
-    }
-
-    return mdxFiles.map((file) => ({
-      slug: file.replace(/\.mdx$/, ''),
-    }));
-  } catch (error) {
-    console.error('Error generating static params:', error);
-    // Return a placeholder to satisfy static export requirements
-    return [{ slug: 'placeholder' }];
-  }
-}
-
-// Reads and parses a blog post by slug
 interface BlogPost {
   content: string;
-  data: Record<string, string>;
+  title: string;
+  date: string;
+  excerpt: string;
+  tags: string[];
 }
 
-async function getBlogPost(slug: string): Promise<BlogPost | null> {
+const readPost = (slug: string): BlogPost | null => {
   const filePath = path.join(BLOG_CONTENT_DIRECTORY, `${slug}.mdx`);
   if (!fs.existsSync(filePath)) return null;
 
-  const rawContent = fs.readFileSync(filePath, 'utf8');
-  const { content, data } = matter(rawContent);
-  return { content, data };
+  const { content, data } = matter(fs.readFileSync(filePath, 'utf8'));
+  return {
+    content,
+    title: String(data.title ?? slug),
+    date: new Date(data.date).toISOString(),
+    excerpt: String(data.excerpt ?? data.description ?? ''),
+    tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
+  };
+};
+
+export function generateStaticParams(): { slug: string }[] {
+  if (!fs.existsSync(BLOG_CONTENT_DIRECTORY)) return [];
+
+  return fs
+    .readdirSync(BLOG_CONTENT_DIRECTORY)
+    .filter((filename) => filename.endsWith('.mdx'))
+    .map((filename) => ({ slug: filename.replace(/\.mdx$/, '') }));
 }
 
-// The blog post page component
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = readPost(slug);
+  if (!post) return {};
+
+  return { title: post.title, description: post.excerpt };
+}
+
 export default async function BlogPostPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<React.ReactElement> {
-  // Await the params Promise in Next.js 15
   const { slug } = await params;
-
-  const post = await getBlogPost(slug);
+  const post = readPost(slug);
   if (!post) notFound();
 
   return (
-    <article className='prose prose-invert mx-auto p-4'>
-      <h1 className='text-4xl font-bold mb-4'>{post.data.title}</h1>
-      <time className='text-neutral-5 mb-6 block'>
-        {new Date(post.data.date).toLocaleDateString()}
-      </time>
-      <MDXRemote
-        source={post.content}
-        components={mdxComponents}
-        options={{
-          mdxOptions: {
-            rehypePlugins: [rehypeHighlight, rehypeSlug],
-          },
-        }}
-      />
-    </article>
+    <>
+      <div className='border-b border-rule bg-surface'>
+        <div className='mx-auto max-w-shell px-5 pb-[46px] pt-[56px] compact:px-7'>
+          <SectionRow label='post'>
+            <div className='flex flex-col gap-3.5'>
+              <div className='flex flex-wrap gap-x-4 font-mono text-[11.5px]'>
+                <time dateTime={post.date} className='text-meta'>
+                  {formatPostDate(post.date)}
+                </time>
+                {post.tags.length > 0 && (
+                  <span className='text-teal'>{post.tags.join(' · ')}</span>
+                )}
+              </div>
+              <h1
+                className={[
+                  'text-[40px] font-bold leading-[1.08]',
+                  'tracking-[-0.035em] text-balance',
+                ].join(' ')}
+              >
+                {post.title}
+              </h1>
+            </div>
+          </SectionRow>
+        </div>
+      </div>
+
+      <div className='mx-auto max-w-shell px-5 pb-[90px] pt-[60px] compact:px-7'>
+        <SectionRow label='contents'>
+          <article className='prose max-w-[72ch]'>
+            <MDXRemote
+              source={post.content}
+              options={{
+                mdxOptions: { rehypePlugins: [rehypeHighlight, rehypeSlug] },
+              }}
+            />
+          </article>
+          <Link
+            href='/blog'
+            className={[
+              'mt-14 inline-block border border-rule-heavy bg-surface',
+              'px-[18px] py-[11px] font-mono text-xs transition-colors',
+              'duration-200 hover:border-accent hover:text-teal',
+            ].join(' ')}
+          >
+            &larr; all notes
+          </Link>
+        </SectionRow>
+      </div>
+    </>
   );
 }

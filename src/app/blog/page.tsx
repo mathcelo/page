@@ -1,76 +1,104 @@
-import React from 'react';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import type { Metadata } from 'next';
+import React from 'react';
 import { BLOG_CONTENT_DIRECTORY } from '@/app/blog/config';
 import BlogPostCard from '@/app/components/BlogPostCard';
+import SectionRow from '@/app/components/SectionRow';
 
-export default function BlogIndexPage(): React.ReactElement {
-  const blogDir = BLOG_CONTENT_DIRECTORY;
+const BLOG_INTRO =
+  "Writing on smart contract analysis, static analysis internals, and whatever I'm " +
+  'reading. Just getting started — the first posts are on the way.';
 
-  if (!fs.existsSync(blogDir)) {
-    return (
-      <div
-        className={[
-          'min-h-screen flex items-center justify-center',
-          'bg-gradient-to-br from-neutral-1 to-neutral-2',
-        ].join(' ')}
-      >
-        <div className='text-center'>
-          <h1 className='text-4xl font-bold text-neutral-7 mb-4'>Blog</h1>
-          <p className='text-neutral-5 text-lg'>
-            No blog posts found yet. Check back soon!
-          </p>
-        </div>
-      </div>
-    );
-  }
+export const metadata: Metadata = {
+  title: 'Notes',
+  description: BLOG_INTRO,
+};
 
-  const filenames = fs.readdirSync(blogDir);
-  const posts = filenames
-    .filter((name) => name.endsWith('.mdx'))
-    .map((name) => {
-      const filePath = path.join(blogDir, name);
-      const fileContent = fs.readFileSync(filePath, 'utf8');
-      const { data } = matter(fileContent);
+interface PostSummary {
+  slug: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  tags: string[];
+}
+
+const readPostSummaries = (): PostSummary[] => {
+  if (!fs.existsSync(BLOG_CONTENT_DIRECTORY)) return [];
+
+  return fs
+    .readdirSync(BLOG_CONTENT_DIRECTORY)
+    .filter((filename) => filename.endsWith('.mdx'))
+    .map((filename) => {
+      const filePath = path.join(BLOG_CONTENT_DIRECTORY, filename);
+      const { data } = matter(fs.readFileSync(filePath, 'utf8'));
 
       return {
-        slug: name.replace(/\.mdx$/, ''),
-        title: data.title,
-        date: data.date,
-        excerpt: data.excerpt || data.description || '',
-        tags: (data.tags || []) as string[],
+        slug: filename.replace(/\.mdx$/, ''),
+        title: String(data.title ?? ''),
+        date: new Date(data.date).toISOString(),
+        excerpt: String(data.excerpt ?? data.description ?? ''),
+        tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
       };
     })
-    .sort((postA, postB) => {
-      return new Date(postB.date).getTime() - new Date(postA.date).getTime();
-    });
+    .sort((left, right) => right.date.localeCompare(left.date));
+};
+
+const BlogIndexPage = (): React.ReactElement => {
+  const posts = readPostSummaries();
 
   return (
-    <div
-      className='min-h-screen bg-gradient-to-br from-neutral-1 to-neutral-2'
-    >
-      <div className='max-w-2xl mx-auto px-4 py-12'>
-        <header className='text-center mb-12'>
-          <p className='text-neutral-6 text-lg max-w-2xl mx-auto'>
-            Thoughts, insights, and notes on security, software, and
-            whatever else catches my interest.
-          </p>
-        </header>
-
-        <div className='grid gap-4'>
-          {posts.map((post) => (
-            <BlogPostCard
-              key={post.slug}
-              slug={post.slug}
-              title={post.title}
-              date={post.date}
-              excerpt={post.excerpt}
-              tags={post.tags}
-            />
-          ))}
+    <>
+      <div className='border-b border-rule bg-surface'>
+        <div
+          className={[
+            'mx-auto max-w-shell px-5 pb-[46px] pt-[56px] compact:px-7',
+          ].join(' ')}
+        >
+          <SectionRow label='blog'>
+            <div className='flex flex-col gap-3.5'>
+              <h1 className='text-[40px] font-bold leading-[1.08] tracking-[-0.035em]'>
+                Notes
+              </h1>
+              <p
+                className={[
+                  'max-w-[58ch] text-[16.5px] leading-[1.7]',
+                  'text-copy text-pretty',
+                ].join(' ')}
+              >
+                {BLOG_INTRO}
+              </p>
+            </div>
+          </SectionRow>
         </div>
       </div>
-    </div>
+
+      <div
+        className={[
+          'mx-auto max-w-shell px-5 pb-[90px] pt-[60px] compact:px-7',
+        ].join(' ')}
+      >
+        <SectionRow label='posts'>
+          <div className='flex flex-col'>
+            {posts.map((post) => (
+              <BlogPostCard
+                key={post.slug}
+                slug={post.slug}
+                title={post.title}
+                date={post.date}
+                excerpt={post.excerpt}
+                tags={post.tags}
+              />
+            ))}
+            <div className='border-t border-rule py-[26px] font-mono text-xs text-meta'>
+              {posts.length > 0 ? '// end of feed' : '// no posts yet'}
+            </div>
+          </div>
+        </SectionRow>
+      </div>
+    </>
   );
-}
+};
+
+export default BlogIndexPage;

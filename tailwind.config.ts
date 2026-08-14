@@ -1,124 +1,114 @@
-import type { Config } from "tailwindcss";
-import defaultTheme from "tailwindcss/defaultTheme";
+import type { Config } from 'tailwindcss';
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 const config: Config = {
-  darkMode: "class",
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
+      // Breakpoints mirroring the design's two max-width rules (860px, 560px).
+      screens: {
+        compact: '561px',
+        wide: '861px',
+      },
+
       colors: {
-        // === Neutral (slate) for background, text, dividers ===
-        neutral: {
-          1: "#0f172a",   // slate-900
-          2: "#1e293b",   // slate-800
-          3: "#334155",   // slate-700
-          4: "#475569",   // slate-600
-          5: "#64748b",   // slate-500
-          6: "#94a3b8",   // slate-400
-          7: "#cbd5e1",   // slate-300
-          8: "#e2e8f0",   // slate-200
-        },
+        // === Surfaces ===
+        canvas: '#F1F5F6',
+        surface: '#FFFFFF',
 
-        // === Primary (cyan) for links, branding, CTAs ===
-        primary: {
-          1: "#22d3ee",  // cyan-400
-          2: "#06b6d4",  // cyan-500
-        },
+        // === Text ===
+        ink: '#0F1E22',
+        'ink-muted': '#2C3B3E',
+        copy: '#48595D',
+        meta: '#6A7C80',
 
-        // === Gradients (fallback solid colors) ===
-        gradient: {
-          1: "#06b6d4",  // cyan-500
-          2: "#0891b2",  // cyan-600
-          3: "#0e7490",  // cyan-700
-        },
+        // === Rules and borders ===
+        rule: '#D8E2E4',
+        'rule-faint': '#E9F0F1',
+        'rule-heavy': '#C5D4D7',
+        'rule-marker': '#9FB3B7',
 
-        // === Error
-        error: {
-          1: "#fee2e2",  // red-100
-          2: "#ef4444",  // red-500
-        },
+        // === Accent (cyan) ===
+        accent: '#00B7CD',
+        'accent-hover': '#00A0B4',
+        'accent-ink': '#04262C',
+        'accent-wash': '#B8ECF3',
 
-        // === Accents
-        accent: {
-          1: "#67e8f9",  // cyan-300
-          2: "#22d3ee",  // cyan-400
-        },
-
-        // === Profile gradient
-        profile: {
-          1: "#BCB384",
-          2: "#d3ccad",
-        },
-
-        // === Others
-        discount: "#22c55e", // green-500
-        link: "#0ea5e9",     // sky-500
+        // === Links and highlights ===
+        teal: '#056676',
+        rust: '#C4603C',
       },
 
       fontFamily: {
-        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        sans: ['var(--font-space-grotesk)', ...defaultTheme.fontFamily.sans],
+        mono: ['var(--font-jetbrains-mono)', ...defaultTheme.fontFamily.mono],
       },
 
-      keyframes: {
-        flash: {
-          "0%, 100%": { backgroundColor: "#1f2937" },
-          "50%": { backgroundColor: "#4b5563" },
-        },
-      },
-      animation: {
-        flash: "flash 0.2s ease-in-out",
+      maxWidth: {
+        shell: '1080px',
       },
 
-      typography: ({ theme }: { theme: (path: string) => any }) => ({
-        dark: {
+      typography: ({ theme }: { theme: (path: string) => string }) => ({
+        DEFAULT: {
           css: {
-            color: theme("colors.neutral.6"),
+            '--tw-prose-body': theme('colors.copy'),
+            '--tw-prose-headings': theme('colors.ink'),
+            '--tw-prose-lead': theme('colors.copy'),
+            '--tw-prose-links': theme('colors.teal'),
+            '--tw-prose-bold': theme('colors.ink'),
+            '--tw-prose-counters': theme('colors.meta'),
+            '--tw-prose-bullets': theme('colors.rule-heavy'),
+            '--tw-prose-hr': theme('colors.rule'),
+            '--tw-prose-quotes': theme('colors.ink-muted'),
+            '--tw-prose-quote-borders': theme('colors.accent'),
+            '--tw-prose-captions': theme('colors.meta'),
+            '--tw-prose-code': theme('colors.ink'),
+            '--tw-prose-pre-code': theme('colors.ink'),
+            '--tw-prose-pre-bg': theme('colors.surface'),
+            '--tw-prose-th-borders': theme('colors.rule'),
+            '--tw-prose-td-borders': theme('colors.rule'),
+            maxWidth: 'none',
             a: {
-              color: theme("colors.primary.1"),
-              "&:hover": {
-                color: theme("colors.primary.2"),
-              },
+              textDecoration: 'none',
+              fontWeight: '500',
+              '&:hover': { color: theme('colors.rust') },
             },
-            strong: { color: theme("colors.neutral.7") },
-            h1: { color: theme("colors.neutral.8") },
-            h2: { color: theme("colors.neutral.7") },
-            h3: { color: theme("colors.neutral.6") },
-            h4: { color: theme("colors.neutral.6") },
+            'h1, h2, h3, h4': {
+              letterSpacing: '-0.02em',
+              fontWeight: '700',
+            },
             code: {
-              color: theme("colors.primary.1"),
-              backgroundColor: theme("colors.neutral.2"),
-              padding: "0.25rem 0.375rem",
-              borderRadius: theme("borderRadius.md"),
+              fontWeight: '400',
+              backgroundColor: theme('colors.surface'),
+              border: `1px solid ${theme('colors.rule')}`,
+              padding: '0.15em 0.4em',
+              borderRadius: '0',
             },
+            'code::before': { content: '""' },
+            'code::after': { content: '""' },
             pre: {
-              color: theme("colors.neutral.6"),
-              backgroundColor: theme("colors.neutral.2"),
-              padding: theme("spacing.4"),
-              borderRadius: theme("borderRadius.lg"),
+              border: `1px solid ${theme('colors.rule')}`,
+              borderRadius: '0',
+            },
+            'pre code': {
+              border: '0',
+              padding: '0',
+              backgroundColor: 'transparent',
             },
             blockquote: {
-              color: theme("colors.neutral.5"),
-              borderLeftColor: theme("colors.neutral.4"),
-            },
-            hr: { borderColor: theme("colors.neutral.4") },
-            ul: {
-              listStyleType: "disc",
-              paddingLeft: "1.25rem",
-            },
-            ol: {
-              listStyleType: "decimal",
-              paddingLeft: "1.25rem",
+              fontStyle: 'normal',
+              borderLeftWidth: '2px',
             },
           },
         },
       }),
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [require('@tailwindcss/typography')],
 };
 
 export default config;

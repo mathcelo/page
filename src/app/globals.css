@@ -2,5 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Add syntax highlighting theme */
-@import 'highlight.js/styles/tokyo-night-dark.css';
+/* Light syntax highlighting theme for blog code blocks */
+@import 'highlight.js/styles/github.css';
+
+@layer base {
+  ::selection {
+    background: theme('colors.accent-wash');
+  }
+}
+
+@layer components {
+  /* Blueprint grid backdrop behind the home hero */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(theme('colors.rule-faint') 1px, transparent 1px),
+      linear-gradient(90deg, theme('colors.rule-faint') 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+}
