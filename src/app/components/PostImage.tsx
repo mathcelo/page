@@ -16,7 +16,11 @@ const PostImage = ({ src, alt = '' }: PostImageProps): React.ReactElement | null
   return (
     <span className='my-6 block'>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt={alt} className='block h-auto w-full border border-rule' />
+      <img
+        src={src}
+        alt={alt}
+        className='block h-auto w-full rounded-lg border border-rule'
+      />
       {alt && (
         <span className='mt-2 block font-mono text-[10.5px] text-meta'>{alt}</span>
       )}
