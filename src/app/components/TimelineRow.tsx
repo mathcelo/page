@@ -1,4 +1,5 @@
 import React from 'react';
+import InstitutionName from '@/app/components/InstitutionName';
 import Tag from '@/app/components/Tag';
 import type { TimelineEntry } from '@/content/resume';
 
@@ -47,7 +48,7 @@ const TimelineRow = ({
       ].join(' ')}
     >
       <h2 className='text-[19px] font-bold tracking-[-0.02em] text-ink'>
-        {entry.role}
+        <InstitutionName text={entry.role} />
       </h2>
       <div className='font-mono text-[11.5px] text-meta'>{entry.meta}</div>
       <p className='max-w-[62ch] text-[15px] leading-[1.65] text-copy text-pretty'>
@@ -56,7 +57,11 @@ const TimelineRow = ({
       {entry.chips.length > 0 && (
         <div className='flex flex-wrap gap-[7px] pt-[5px]'>
           {entry.chips.map((chip) => (
-            <Tag key={chip.label} highlighted={chip.highlighted}>
+            <Tag
+              key={chip.label}
+              highlighted={chip.highlighted}
+              href={chip.url}
+            >
               {chip.label}
             </Tag>
           ))}

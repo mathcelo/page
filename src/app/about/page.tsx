@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import React from 'react';
+import InstitutionName from '@/app/components/InstitutionName';
 import MetaRow from '@/app/components/MetaRow';
 import ProjectCard from '@/app/components/ProjectCard';
 import SectionRow from '@/app/components/SectionRow';
@@ -146,7 +147,7 @@ const Achievements = (): React.ReactElement => (
           <div className='flex flex-col gap-1'>
             <span className='text-[15px] text-ink'>{achievement.title}</span>
             <span className='font-mono text-[11.5px] text-meta'>
-              {achievement.institution}
+              <InstitutionName text={achievement.institution} />
             </span>
           </div>
         </MetaRow>

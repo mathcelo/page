@@ -3,7 +3,11 @@
 export interface TimelineChip {
   label: string;
   highlighted: boolean;
+  url?: string;
 }
+
+const USENIX_SECURITY_23_URL =
+  'https://www.usenix.org/conference/usenixsecurity23/presentation/zhang-zhuo-exploit';
 
 export interface TimelineEntry {
   period: string;
@@ -61,7 +65,9 @@ export const TIMELINE: readonly TimelineEntry[] = [
   },
   {
     period: '2022–26',
-    role: 'Doctoral Studies + Research & Teaching Assistant, Ohio State',
+    role:
+      'Doctoral Studies + Research & Teaching Assistant, ' +
+      'The Ohio State University',
     meta: 'cs&e · w3cil lab · advisor dr. carter yagemann',
     description:
       'Doctoral studies in Computer Science and Engineering, researching blockchain ' +
@@ -69,7 +75,11 @@ export const TIMELINE: readonly TimelineEntry[] = [
       'Information Security. Built a Python tool for Solidity range analysis and ' +
       'peer-reviewed for IEEE S&P and USENIX Security.',
     chips: [
-      { label: "USENIX Security '23 — Your Exploit is Mine", highlighted: true },
+      {
+        label: "USENIX Security '23 — Your Exploit is Mine",
+        highlighted: true,
+        url: USENIX_SECURITY_23_URL,
+      },
       { label: 'Burnyard', highlighted: false },
     ],
   },
@@ -107,7 +117,7 @@ export const PUBLICATIONS: readonly Publication[] = [
       'Xiangyu Zhang',
       'Kaiyuan Zhang',
     ],
-    url: 'https://www.usenix.org/conference/usenixsecurity23/presentation/zhang-zhuo-exploit',
+    url: USENIX_SECURITY_23_URL,
   },
 ];
 
