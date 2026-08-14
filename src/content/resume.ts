@@ -54,9 +54,9 @@ export const TIMELINE: readonly TimelineEntry[] = [
     description:
       'Smart contract security audits and client engagements, alongside internal ' +
       'security tooling that supports the audit practice. Arrived as an intern, ' +
-      'where I architected a general data flow engine for Slither — replacing ad hoc ' +
-      'per-detector logic with a reusable framework — and demonstrated it with a ' +
-      'reentrancy detector, an interval analysis, and a rounding-issue detector.',
+      'where I architected a general data flow engine for Slither and demonstrated ' +
+      'it with a reentrancy detector, an interval analysis, and a rounding-issue ' +
+      'detector.',
     chips: [],
   },
   {
