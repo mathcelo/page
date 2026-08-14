@@ -24,11 +24,6 @@ const jetbrainsMono = JetBrains_Mono({
   adjustFontFallback: false,
 });
 
-const FAVICON =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' " +
-  "viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2300B7CD'/" +
-  '%3E%3C/svg%3E';
-
 export const metadata: Metadata = {
   title: {
     default: 'Marcelo Morales',
@@ -44,9 +39,6 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>): React.ReactElement {
   return (
     <html lang='en'>
-      <head>
-        <link rel='icon' href={FAVICON} type='image/svg+xml' />
-      </head>
       <body
         className={[
           spaceGrotesk.variable,

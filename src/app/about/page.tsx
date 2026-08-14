@@ -24,7 +24,10 @@ export const metadata: Metadata = {
 const AboutHeader = (): React.ReactElement => (
   <div className='blueprint-grid border-b border-rule bg-surface'>
     <div className='mx-auto w-full max-w-shell px-5 py-6 compact:px-7'>
-      <h1 className='font-mono text-xs font-normal text-meta'>{'// about'}</h1>
+      <h1 className='sr-only'>About Marcelo Morales</h1>
+      <div aria-hidden='true' className='font-mono text-xs text-meta'>
+        {'// about'}
+      </div>
     </div>
   </div>
 );
@@ -58,17 +61,16 @@ const Publications = (): React.ReactElement => (
           }
         >
           <div className='flex flex-col gap-2'>
-            <a
-              href={publication.url}
-              target='_blank'
-              rel='noopener noreferrer'
-              className={[
-                'text-base font-medium leading-[1.5] tracking-[-0.01em]',
-                'text-ink transition-colors duration-200 hover:text-rust',
-              ].join(' ')}
-            >
-              {publication.title}
-            </a>
+            <h2 className='text-base font-medium leading-[1.5] tracking-[-0.01em]'>
+              <a
+                href={publication.url}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-ink transition-colors duration-200 hover:text-rust'
+              >
+                {publication.title}
+              </a>
+            </h2>
             <p className='text-sm leading-[1.6] text-copy'>
               {publication.authors.map((author, position) => (
                 <span
@@ -128,7 +130,9 @@ const Achievements = (): React.ReactElement => (
           }
         >
           <div className='flex flex-col gap-1'>
-            <span className='text-[15px] text-ink'>{achievement.title}</span>
+            <h2 className='text-[15px] font-normal text-ink'>
+              {achievement.title}
+            </h2>
             <span className='font-mono text-[11.5px] text-meta'>
               <InstitutionName text={achievement.institution} />
             </span>
