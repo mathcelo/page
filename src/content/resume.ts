@@ -67,8 +67,7 @@ export const TIMELINE: readonly TimelineEntry[] = [
       'Doctoral studies in Computer Science and Engineering, researching blockchain ' +
       'security and malware detection, alongside teaching C++ Programming and ' +
       'Information Security. Built a Python tool for Solidity range analysis and ' +
-      'peer-reviewed for IEEE S&P and USENIX Security. NSF CyberCorps Scholarship ' +
-      'for Service recipient.',
+      'peer-reviewed for IEEE S&P and USENIX Security.',
     chips: [
       { label: "USENIX Security '23 — Your Exploit is Mine", highlighted: true },
       { label: 'Burnyard', highlighted: false },
@@ -184,6 +183,11 @@ export const SKILL_GROUPS: readonly SkillGroup[] = [
 ];
 
 export const ACHIEVEMENTS: readonly Achievement[] = [
+  {
+    period: 'fall 2025 – spring 2026',
+    title: 'NSF CyberCorps Scholarship for Service recipient',
+    institution: 'The Ohio State University',
+  },
   {
     period: '2025',
     title: 'Demo Presenter, ICDT Cybersecurity & Digital Trust Symposium',
