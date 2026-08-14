@@ -80,21 +80,24 @@ const BlogIndexPage = (): React.ReactElement => {
         ].join(' ')}
       >
         <SectionRow label='posts'>
-          <div className='flex flex-col'>
-            {posts.map((post) => (
-              <BlogPostCard
-                key={post.slug}
-                slug={post.slug}
-                title={post.title}
-                date={post.date}
-                excerpt={post.excerpt}
-                tags={post.tags}
-              />
-            ))}
-            <div className='border-t border-rule py-[26px] font-mono text-xs text-meta'>
-              {posts.length > 0 ? '// end of feed' : '// no posts yet'}
+          {posts.length > 0 ? (
+            <div className='flex flex-col border-b border-rule'>
+              {posts.map((post) => (
+                <BlogPostCard
+                  key={post.slug}
+                  slug={post.slug}
+                  title={post.title}
+                  date={post.date}
+                  excerpt={post.excerpt}
+                  tags={post.tags}
+                />
+              ))}
             </div>
-          </div>
+          ) : (
+            <p className='border-y border-rule py-[26px] text-[15px] text-copy'>
+              No posts yet — check back soon.
+            </p>
+          )}
         </SectionRow>
       </div>
     </>
