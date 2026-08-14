@@ -21,11 +21,20 @@ Page content is driven by `src/content/resume.ts`; blog posts live in
 ## Getting started
 
 ```bash
-yarn install
-yarn dev
+pnpm install
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view it locally.
+
+## Creating a new blog post
+
+```bash
+pnpm new-post "My New Blog Post"
+```
+
+This creates a new MDX file in `src/content/blog/` with the title slugified as the filename
+and today's date in the frontmatter.
 
 ## Deployment
 

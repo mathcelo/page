@@ -11,6 +11,7 @@ import rehypeSlug from 'rehype-slug';
 import { BLOG_CONTENT_DIRECTORY } from '@/app/blog/config';
 import { formatPostDate } from '@/app/components/BlogPostCard';
 import SectionRow from '@/app/components/SectionRow';
+import { mdxComponents } from '@/app/mdx-components';
 
 interface BlogPost {
   content: string;
@@ -86,6 +87,16 @@ export default async function BlogPostPage({
               >
                 {post.title}
               </h1>
+              {post.excerpt && (
+                <p
+                  className={[
+                    'max-w-[58ch] text-[16.5px] leading-[1.7]',
+                    'text-copy text-pretty',
+                  ].join(' ')}
+                >
+                  {post.excerpt}
+                </p>
+              )}
             </div>
           </SectionRow>
         </div>
@@ -96,6 +107,7 @@ export default async function BlogPostPage({
           <article className='prose max-w-[72ch]'>
             <MDXRemote
               source={post.content}
+              components={mdxComponents}
               options={{
                 mdxOptions: { rehypePlugins: [rehypeHighlight, rehypeSlug] },
               }}
