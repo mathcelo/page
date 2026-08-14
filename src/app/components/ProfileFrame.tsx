@@ -29,7 +29,7 @@ const ProfileFrame = (): React.ReactElement => (
       />
     </div>
     <div className='text-center font-mono text-[10.5px] text-meta'>
-      img/marcelo.png
+      img/mathcelo.png
     </div>
   </div>
 );

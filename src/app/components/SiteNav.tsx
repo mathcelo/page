@@ -28,7 +28,7 @@ const SiteNav = (): React.ReactElement => {
         <Link href='/' className='flex items-center gap-2.5 text-ink'>
           <span className='h-[11px] w-[11px] bg-accent' aria-hidden='true' />
           <span className='text-[15px] font-bold tracking-[-0.01em]'>
-            M. MORALES
+            mathcelo
           </span>
         </Link>
 
