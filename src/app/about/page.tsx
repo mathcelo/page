@@ -26,7 +26,7 @@ const AboutHeader = (): React.ReactElement => (
   <div className='blueprint-grid border-b border-rule bg-surface'>
     <div
       className={[
-        'mx-auto flex max-w-shell flex-wrap items-center justify-between',
+        'mx-auto flex w-full max-w-shell flex-wrap items-center justify-between',
         'gap-6 px-5 py-6 compact:px-7',
       ].join(' ')}
     >
@@ -161,7 +161,7 @@ const About = (): React.ReactElement => (
     <AboutHeader />
     <div
       className={[
-        'mx-auto flex max-w-shell flex-col gap-[62px]',
+        'mx-auto flex w-full max-w-shell flex-col gap-[62px]',
         'px-5 pb-[90px] pt-[60px] compact:px-7',
       ].join(' ')}
     >

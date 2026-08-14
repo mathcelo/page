@@ -11,7 +11,7 @@ const SiteFooter = (): React.ReactElement => (
   <footer className='border-t border-rule bg-surface'>
     <div
       className={[
-        'mx-auto flex max-w-shell flex-wrap items-center justify-between',
+        'mx-auto flex w-full max-w-shell flex-wrap items-center justify-between',
         'gap-5 px-5 py-[34px] font-mono text-xs text-meta compact:px-7',
       ].join(' ')}
     >

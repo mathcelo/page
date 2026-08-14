@@ -20,7 +20,7 @@ const SiteNav = (): React.ReactElement => {
     <div className='sticky top-0 z-20 border-b border-rule bg-surface'>
       <nav
         className={[
-          'mx-auto flex max-w-shell items-center justify-between gap-5',
+          'mx-auto flex w-full max-w-shell items-center justify-between gap-5',
           'px-5 py-3 compact:h-[62px] compact:flex-nowrap compact:px-7',
           'compact:py-0 flex-wrap gap-y-2',
         ].join(' ')}

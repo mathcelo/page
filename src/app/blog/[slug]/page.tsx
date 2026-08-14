@@ -68,7 +68,7 @@ export default async function BlogPostPage({
   return (
     <>
       <div className='blueprint-grid border-b border-rule bg-surface'>
-        <div className='mx-auto max-w-shell px-5 pb-[46px] pt-[56px] compact:px-7'>
+        <div className='mx-auto w-full max-w-shell px-5 pb-[46px] pt-[56px] compact:px-7'>
           <SectionRow label='post'>
             <div className='flex flex-col gap-3.5'>
               <div className='flex flex-wrap gap-x-4 font-mono text-[11.5px]'>
@@ -102,7 +102,7 @@ export default async function BlogPostPage({
         </div>
       </div>
 
-      <div className='mx-auto max-w-shell px-5 pb-[90px] pt-[60px] compact:px-7'>
+      <div className='mx-auto w-full max-w-shell px-5 pb-[90px] pt-[60px] compact:px-7'>
         <SectionRow label='contents'>
           <article className='prose max-w-[72ch]'>
             <MDXRemote
