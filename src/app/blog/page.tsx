@@ -8,8 +8,8 @@ import BlogPostCard from '@/app/components/BlogPostCard';
 import SectionRow from '@/app/components/SectionRow';
 
 const BLOG_INTRO =
-  "Writing on smart contract analysis, static analysis internals, and whatever I'm " +
-  'reading. Just getting started — the first posts are on the way.';
+  'Writing on smart contract analysis, static analysis internals, side projects, ' +
+  "and whatever I'm reading.";
 
 export const metadata: Metadata = {
   title: 'Notes',
