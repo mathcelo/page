@@ -26,7 +26,12 @@ const Home = (): React.ReactElement => (
         'wide:grid-cols-[minmax(0,1fr)_260px] wide:gap-14',
       ].join(' ')}
     >
-      <div className='flex flex-col gap-[22px]'>
+      <div
+        className={[
+          'flex flex-col items-center gap-[22px] text-center',
+          'wide:items-start wide:text-left',
+        ].join(' ')}
+      >
         <div className='font-mono text-xs text-meta'>
           {'role → '}
           <span className='text-ink'>security engineer</span>
@@ -78,7 +83,12 @@ const Home = (): React.ReactElement => (
           .
         </p>
 
-        <div className='flex flex-wrap gap-2 pt-1.5 font-mono text-xs'>
+        <div
+          className={[
+            'flex flex-wrap justify-center gap-2 pt-1.5 font-mono text-xs',
+            'wide:justify-start',
+          ].join(' ')}
+        >
           <Link href='/about' className={PRIMARY_BUTTON}>
             about &rarr;
           </Link>
@@ -88,7 +98,12 @@ const Home = (): React.ReactElement => (
         </div>
       </div>
 
-      <div className='mx-auto max-w-[200px] wide:mx-0 wide:max-w-none'>
+      <div
+        className={[
+          'order-first mx-auto max-w-[200px]',
+          'wide:order-none wide:mx-0 wide:max-w-none',
+        ].join(' ')}
+      >
         <ProfileFrame />
       </div>
     </div>
