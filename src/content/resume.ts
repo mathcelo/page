@@ -47,8 +47,6 @@ export interface Achievement {
 export const CONTACT_EMAIL = 'marcelomoralesuni@gmail.com';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/mathcelo/';
 export const GITHUB_URL = 'https://github.com/mathcelo';
-export const RESUME_URL =
-  'https://github.com/mathcelo/resume/raw/main/out/morales_marcelo_resume.pdf';
 
 export const TIMELINE: readonly TimelineEntry[] = [
   {

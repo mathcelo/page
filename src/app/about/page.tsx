@@ -11,7 +11,6 @@ import {
   AUTHOR_NAME,
   PROJECTS,
   PUBLICATIONS,
-  RESUME_URL,
   SKILL_GROUPS,
   TIMELINE,
 } from '@/content/resume';
@@ -24,24 +23,8 @@ export const metadata: Metadata = {
 
 const AboutHeader = (): React.ReactElement => (
   <div className='blueprint-grid border-b border-rule bg-surface'>
-    <div
-      className={[
-        'mx-auto flex w-full max-w-shell flex-wrap items-center justify-between',
-        'gap-6 px-5 py-6 compact:px-7',
-      ].join(' ')}
-    >
+    <div className='mx-auto w-full max-w-shell px-5 py-6 compact:px-7'>
       <h1 className='font-mono text-xs font-normal text-meta'>{'// about'}</h1>
-      <a
-        href={RESUME_URL}
-        target='_blank'
-        rel='noopener noreferrer'
-        className={[
-          'bg-accent px-[18px] py-[11px] font-mono text-xs text-accent-ink',
-          'transition-colors duration-200 hover:bg-accent-hover',
-        ].join(' ')}
-      >
-        download resume &darr;
-      </a>
     </div>
   </div>
 );
