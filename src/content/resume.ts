@@ -50,13 +50,13 @@ export const TIMELINE: readonly TimelineEntry[] = [
   {
     period: '2025 —',
     role: 'Security Engineer, Trail of Bits',
-    meta: 'full-time · brooklyn, ny',
+    meta: 'full-time · remote',
     description:
       'Smart contract security audits and client engagements, alongside internal ' +
-      'security tooling that supports the audit practice. Arrived as an intern, ' +
-      'where I architected a general data flow engine for Slither and demonstrated ' +
-      'it with a reentrancy detector, an interval analysis, and a rounding-issue ' +
-      'detector.',
+      'security tooling that supports the audit practice. Arrived as an intern ' +
+      'onsite in Brooklyn, where I architected a general data flow engine for ' +
+      'Slither and demonstrated it with a reentrancy detector, an interval ' +
+      'analysis, and a rounding-issue detector.',
     chips: [],
   },
   {
