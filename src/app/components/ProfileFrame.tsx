@@ -1,15 +1,28 @@
 import Image from 'next/image';
 import React from 'react';
+import { PORTRAIT_ASCII } from '@/content/portrait-ascii';
 
 const PROFILE_IMAGE = '/profile-animated.png';
-const LIGHTNING_OVERLAY = '/lightning.webp';
 
-/** Square hero portrait, with a lightning flourish on hover. */
+/**
+ * The art is a 60x36 character grid. JetBrains Mono advances 0.6em per
+ * character, so a square block needs font-size and line-height both equal to
+ * the container width over 36: 200/36 at the mobile width, 260/36 above the
+ * wide breakpoint.
+ */
+const ASCII_METRICS = [
+  'text-[5.56px] leading-[5.56px]',
+  'wide:text-[7.22px] wide:leading-[7.22px]',
+].join(' ');
+
+const FADE = 'transition-opacity duration-500 ease-in-out';
+
+/** Square hero portrait that dissolves into an ASCII rendering on hover. */
 const ProfileFrame = (): React.ReactElement => (
   <div className='flex flex-col gap-2'>
     <div
       className='group relative aspect-square overflow-hidden'
-      style={{ cursor: 'url(/zenitsu-cursor.png), auto' }}
+      style={{ cursor: 'url(/retro-cursor.png) 0 0, auto' }}
     >
       <Image
         src={PROFILE_IMAGE}
@@ -17,16 +30,18 @@ const ProfileFrame = (): React.ReactElement => (
         fill
         sizes='260px'
         priority
-        className='object-cover'
+        className={`object-cover ${FADE} group-hover:opacity-0`}
       />
-      <div
+      <pre
         aria-hidden='true'
         className={[
-          'absolute inset-0 bg-cover bg-center opacity-0',
-          'transition-opacity duration-500 ease-in-out group-hover:opacity-100',
+          'absolute inset-0 m-0 overflow-hidden font-mono font-medium text-ink',
+          ASCII_METRICS,
+          `opacity-0 ${FADE} group-hover:opacity-100`,
         ].join(' ')}
-        style={{ backgroundImage: `url(${LIGHTNING_OVERLAY})` }}
-      />
+      >
+        {PORTRAIT_ASCII}
+      </pre>
     </div>
     <div className='text-center font-mono text-[10.5px] text-meta'>
       img/mathcelo.png
