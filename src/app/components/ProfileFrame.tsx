@@ -8,7 +8,7 @@ const LIGHTNING_OVERLAY = '/lightning.webp';
 const ProfileFrame = (): React.ReactElement => (
   <div className='flex flex-col gap-2'>
     <div
-      className='group relative aspect-square overflow-hidden border border-accent'
+      className='group relative aspect-square overflow-hidden'
       style={{ cursor: 'url(/zenitsu-cursor.png), auto' }}
     >
       <Image

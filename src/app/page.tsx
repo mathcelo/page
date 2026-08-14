@@ -16,7 +16,7 @@ const Home = (): React.ReactElement => (
   <div className='blueprint-grid border-b border-rule bg-surface'>
     <div
       className={[
-        'mx-auto grid max-w-shell grid-cols-1 items-start gap-[18px]',
+        'mx-auto grid max-w-shell grid-cols-1 items-center gap-[18px]',
         'px-5 pb-[68px] pt-[76px] compact:px-7',
         'wide:grid-cols-[minmax(0,1fr)_260px] wide:gap-14',
       ].join(' ')}
