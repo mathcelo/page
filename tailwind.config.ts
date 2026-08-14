@@ -24,7 +24,9 @@ const config: Config = {
         ink: '#0F1E22',
         'ink-muted': '#2C3B3E',
         copy: '#48595D',
-        meta: '#6A7C80',
+        // Darkened from the design's #6A7C80 to clear WCAG AA at the 11-12px
+        // sizes this is used at (4.87:1 on canvas, 5.35:1 on surface).
+        meta: '#5C6E72',
 
         // === Rules and borders ===
         rule: '#D8E2E4',
@@ -33,6 +35,7 @@ const config: Config = {
         'rule-marker': '#9FB3B7',
 
         // === Accent (cyan) ===
+        // accent-hover is a background only; as text it does not meet AA.
         accent: '#00B7CD',
         'accent-hover': '#00A0B4',
         'accent-ink': '#04262C',
@@ -40,7 +43,8 @@ const config: Config = {
 
         // === Links and highlights ===
         teal: '#056676',
-        rust: '#C4603C',
+        // Darkened from the design's #C4603C to clear AA at 11.5px.
+        rust: '#A94E2E',
       },
 
       fontFamily: {

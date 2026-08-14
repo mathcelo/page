@@ -41,7 +41,7 @@ const SiteNav = (): React.ReactElement => {
               className={[
                 'px-[9px] py-[7px] transition-colors duration-200',
                 isActive(pathname, link.href)
-                  ? 'text-accent-hover'
+                  ? 'text-teal'
                   : 'text-meta hover:text-ink',
               ].join(' ')}
             >
