@@ -35,7 +35,7 @@ const ProfileFrame = (): React.ReactElement => (
       <pre
         aria-hidden='true'
         className={[
-          'absolute inset-0 m-0 overflow-hidden font-mono font-medium text-ink',
+          'absolute inset-0 m-0 overflow-hidden font-mono font-medium text-black',
           ASCII_METRICS,
           `opacity-0 ${FADE} group-hover:opacity-100`,
         ].join(' ')}
