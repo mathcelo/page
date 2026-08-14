@@ -13,7 +13,12 @@ const SECONDARY_BUTTON = [
 ].join(' ');
 
 const Home = (): React.ReactElement => (
-  <div className='blueprint-grid border-b border-rule bg-surface'>
+  <div
+    className={[
+      'blueprint-grid flex grow flex-col justify-center',
+      'border-b border-rule bg-surface',
+    ].join(' ')}
+  >
     <div
       className={[
         'mx-auto grid max-w-shell grid-cols-1 items-center gap-[18px]',
