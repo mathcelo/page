@@ -7,13 +7,10 @@ const PROFILE_IMAGE = '/profile-animated.png';
 /**
  * The art is a 60x36 character grid. JetBrains Mono advances 0.6em per
  * character, so a square block needs font-size and line-height both equal to
- * the container width over 36: 200/36 at the mobile width, 260/36 above the
- * wide breakpoint.
+ * the container width over 36. The portrait is 260px wide at every breakpoint,
+ * which gives 260/36.
  */
-const ASCII_METRICS = [
-  'text-[5.56px] leading-[5.56px]',
-  'wide:text-[7.22px] wide:leading-[7.22px]',
-].join(' ');
+const ASCII_METRICS = 'text-[7.22px] leading-[7.22px]';
 
 const FADE = 'transition-opacity duration-500 ease-in-out';
 

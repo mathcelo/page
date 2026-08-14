@@ -100,7 +100,7 @@ const Home = (): React.ReactElement => (
 
       <div
         className={[
-          'order-first mx-auto max-w-[200px]',
+          'order-first mx-auto w-full max-w-[260px]',
           'wide:order-none wide:mx-0 wide:max-w-none',
         ].join(' ')}
       >
