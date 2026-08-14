@@ -50,7 +50,7 @@ const BlogIndexPage = (): React.ReactElement => {
 
   return (
     <>
-      <div className='border-b border-rule bg-surface'>
+      <div className='blueprint-grid border-b border-rule bg-surface'>
         <div
           className={[
             'mx-auto max-w-shell px-5 pb-[46px] pt-[56px] compact:px-7',

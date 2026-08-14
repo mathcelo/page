@@ -46,7 +46,8 @@ export default function RootLayout({
         className={[
           spaceGrotesk.variable,
           jetbrainsMono.variable,
-          'flex min-h-screen flex-col bg-canvas font-sans text-ink antialiased',
+          'blueprint-grid flex min-h-screen flex-col bg-canvas',
+          'font-sans text-ink antialiased',
         ].join(' ')}
       >
         <SiteNav />

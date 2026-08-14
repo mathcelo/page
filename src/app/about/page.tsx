@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 const AboutHeader = (): React.ReactElement => (
-  <div className='border-b border-rule bg-surface'>
+  <div className='blueprint-grid border-b border-rule bg-surface'>
     <div
       className={[
         'mx-auto flex max-w-shell flex-wrap items-center justify-between',

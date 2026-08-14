@@ -67,7 +67,7 @@ export default async function BlogPostPage({
 
   return (
     <>
-      <div className='border-b border-rule bg-surface'>
+      <div className='blueprint-grid border-b border-rule bg-surface'>
         <div className='mx-auto max-w-shell px-5 pb-[46px] pt-[56px] compact:px-7'>
           <SectionRow label='post'>
             <div className='flex flex-col gap-3.5'>
