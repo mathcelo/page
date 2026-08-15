@@ -1,69 +1,60 @@
-import React from 'react';
 import Link from 'next/link';
+import React from 'react';
+import { formatPostDate } from '@/app/blog/posts';
+import MetaRow from '@/app/components/MetaRow';
 
 interface BlogPostCardProps {
   slug: string;
   title: string;
+  /** ISO 8601 timestamp; formatted in UTC so output is build-stable. */
   date: string;
   excerpt: string;
-  tags: string[];
+  tags: readonly string[];
 }
 
-const BlogPostCard: React.FC<BlogPostCardProps> = ({
+const BlogPostCard = ({
   slug,
   title,
   date,
   excerpt,
   tags,
-}) => {
-  return (
-    <Link href={`/blog/${slug}`}>
-      <article
-        className={[
-          'border border-neutral-3/60 rounded-lg p-5',
-          'transition-colors duration-200 hover:bg-neutral-2',
-        ].join(' ')}
-      >
-        <div
-          className='flex items-baseline justify-between gap-4 mb-1'
-        >
-          <h2
-            className={[
-              'text-lg font-semibold text-neutral-8',
-              'hover:text-primary-1',
-              'transition-colors duration-200',
-            ].join(' ')}
-          >
-            {title || slug}
-          </h2>
-          <time className='text-neutral-5 text-sm shrink-0'>
-            {new Date(date).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'short',
-              day: 'numeric',
-            })}
+}: BlogPostCardProps): React.ReactElement => (
+  <Link href={`/blog/${slug}`} className='group block'>
+    <MetaRow
+      className={[
+        'py-[26px] transition-colors duration-200',
+        'group-hover:border-accent',
+      ].join(' ')}
+      gutter={
+        <div className='flex flex-col gap-[5px]'>
+          <time dateTime={date} className='font-mono text-[11.5px] text-meta'>
+            {formatPostDate(date)}
           </time>
+          {tags.length > 0 && (
+            <div className='font-mono text-[11.5px] text-teal'>
+              {tags.join(' · ')}
+            </div>
+          )}
         </div>
-
+      }
+    >
+      <div className='flex flex-col gap-2'>
+        <h2
+          className={[
+            'text-[19px] font-medium leading-[1.35] tracking-[-0.02em]',
+            'text-ink transition-colors duration-200 group-hover:text-teal',
+          ].join(' ')}
+        >
+          {title || slug}
+        </h2>
         {excerpt && (
-          <p className='text-neutral-6 text-sm mb-2 line-clamp-2'>{excerpt}</p>
+          <p className='text-[15px] leading-[1.65] text-copy text-pretty'>
+            {excerpt}
+          </p>
         )}
-
-        {tags.length > 0 && (
-          <div className='flex flex-wrap gap-2'>
-            {tags.map((tag: string) => (
-              <span
-                key={tag}
-                className='text-xs text-neutral-5 bg-neutral-3/40 px-2 py-0.5 rounded-full'
-              >
-                #{tag}
-              </span>
-            ))}
-          </div>
-        )}
-      </article>
-    </Link>
-  );
-};
+      </div>
+    </MetaRow>
+  </Link>
+);
 
 export default BlogPostCard;

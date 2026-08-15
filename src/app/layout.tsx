@@ -1,59 +1,55 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
+import { JetBrains_Mono, Space_Grotesk } from 'next/font/google';
+import React from 'react';
 import './globals.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import SiteFooter from '@/app/components/SiteFooter';
+import SiteNav from '@/app/components/SiteNav';
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  variable: '--font-space-grotesk',
+  display: 'swap',
 });
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+  // The metric-adjusted fallback next/font generates is backed by Arial, and
+  // because it is a real @font-face it shadows ui-monospace/Menlo entirely.
+  // The ASCII portrait needs a fixed 0.6em advance, so fall back to a genuine
+  // monospace instead.
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
-  title: 'Marcelo Morales',
+  title: {
+    default: 'Marcelo Morales',
+    template: '%s · Marcelo Morales',
+  },
   description:
-    'Exploring cybersecurity and blockchain research by Marcelo Morales, PhD student at The Ohio State University.',
+    'Security engineer at Trail of Bits working on blockchain security and ' +
+    'smart contract analysis.',
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>): React.ReactElement {
   return (
-    <html lang='en' className='dark'>
-      <head>
-        <link
-          rel='icon'
-          href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🖥️%3C/text%3E%3C/svg%3E"
-          type='image/svg+xml'
-        />
-      </head>
+    <html lang='en'>
       <body
         className={[
-          geistSans.variable,
-          geistMono.variable,
-          'antialiased bg-gradient-to-b',
-          'from-neutral-1 via-neutral-1 to-neutral-2',
-          'text-neutral-8',
+          spaceGrotesk.variable,
+          jetbrainsMono.variable,
+          'blueprint-grid flex min-h-screen flex-col bg-canvas',
+          'font-sans text-ink antialiased',
         ].join(' ')}
       >
-        <div className='min-h-screen flex flex-col'>
-          {/* Header */}
-          <Header />
-
-          {/* Main content */}
-          <main className='flex-grow'>{children}</main>
-
-          {/* Footer */}
-          <Footer />
-        </div>
+        <SiteNav />
+        <main className='flex flex-1 flex-col'>{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );

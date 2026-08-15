@@ -1,170 +1,115 @@
+import Link from 'next/link';
 import React from 'react';
-import Image from 'next/image';
-import Typewriter from './components/Typewriter';
+import InstitutionName from '@/app/components/InstitutionName';
+import ProfileFrame from '@/app/components/ProfileFrame';
 
-const PROFILE_IMAGE = '/profile.png';
-const PROFILE_ANIMATED_IMAGE = '/profile-animated.png';
-const LIGHTNING_OVERLAY = '/lightning.webp';
-const CONTACT_EMAIL = 'morales.374@osu.edu';
-
-const LINK_STYLE = [
-  'text-neutral-5 font-medium',
-  'hover:text-neutral-4',
-  'transition-all duration-300 ease-in-out',
+const PRIMARY_BUTTON = [
+  'bg-accent px-[18px] py-[11px] text-accent-ink',
+  'transition-colors duration-200 hover:bg-accent-hover',
 ].join(' ');
 
-const STATIC_IMAGE_STYLE = [
-  'object-contain object-center rounded-full',
-  'shadow-lg border-4 border-neutral-4',
-  'opacity-100 group-hover:opacity-0',
-  'transition-opacity duration-500 ease-in-out',
+const SECONDARY_BUTTON = [
+  'border border-rule-heavy bg-surface px-[18px] py-[11px] text-ink',
+  'transition-colors duration-200 hover:border-accent hover:text-teal',
 ].join(' ');
 
-const ANIMATED_IMAGE_STYLE = [
-  'object-cover rounded-full',
-  'shadow-lg border-4 border-neutral-4',
-  'opacity-0 group-hover:opacity-100',
-  'transition-opacity duration-500 ease-in-out',
-].join(' ');
-
-const Home = (): React.ReactElement => {
-  return (
+const Home = (): React.ReactElement => (
+  <div
+    className={[
+      'blueprint-grid flex grow flex-col justify-center',
+      'border-b border-rule bg-surface',
+    ].join(' ')}
+  >
     <div
       className={[
-        'min-h-screen flex flex-col items-center',
-        'justify-center p-8 sm:p-20 text-center gap-16',
+        'mx-auto grid w-full max-w-shell grid-cols-1 items-center gap-[18px]',
+        'px-5 pb-[68px] pt-[76px] compact:px-7',
+        'wide:grid-cols-[minmax(0,1fr)_260px] wide:gap-14',
       ].join(' ')}
     >
-      {/* Profile Picture with Image Swap and Lightning */}
       <div
         className={[
-          'relative w-[180px] h-[180px] mb-4',
-          'group rounded-full overflow-hidden',
-          'bg-gradient-to-r from-profile-1 to-profile-2',
+          'flex flex-col items-center gap-[22px] text-center',
+          'wide:items-start wide:text-left',
         ].join(' ')}
-        style={{
-          cursor: 'url(/zenitsu-cursor.png), auto',
-        }}
       >
-        <Image
-          src={PROFILE_IMAGE}
-          alt='Picture of Marcelo'
-          fill
-          className={STATIC_IMAGE_STYLE}
-        />
-        <Image
-          src={PROFILE_ANIMATED_IMAGE}
-          alt='Animated Picture of Marcelo'
-          fill
-          className={ANIMATED_IMAGE_STYLE}
-        />
-        <div
-          className={[
-            'absolute inset-0 rounded-full',
-            'opacity-0 group-hover:opacity-100',
-            'transition-opacity duration-500 ease-in-out',
-          ].join(' ')}
-          style={{
-            backgroundImage: `url(${LIGHTNING_OVERLAY})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        ></div>
-      </div>
+        <div className='font-mono text-xs text-meta'>
+          {'role → '}
+          <span className='text-ink'>security engineer</span>
+          {' · '}
+          {'org → '}
+          <span className='text-ink'>trail of bits</span>
+        </div>
 
-      {/* Main Content */}
-      <main
-        className={[
-          'max-w-md text-neutral-7 leading-relaxed',
-          'tracking-wide animate-fadeIn delay-300',
-        ].join(' ')}
-      >
-        <h1 className='text-3xl font-extrabold mb-6 text-neutral-8'>
-          Hello there!
+        <h1
+          className={[
+            'text-[38px] font-bold leading-[1.02] tracking-[-0.03em]',
+            'text-balance wide:text-[60px] wide:tracking-[-0.04em]',
+          ].join(' ')}
+        >
+          Marcelo Morales
         </h1>
 
         <p
           className={[
-            'text-lg leading-8 indent-6 mb-4 text-neutral-6',
-            'first-letter:text-2xl',
-            'first-letter:font-semibold',
-            'first-letter:text-neutral-5',
+            'max-w-[22ch] text-[21px] font-medium leading-[1.4]',
+            'tracking-[-0.015em] text-teal',
           ].join(' ')}
         >
-          I am{' '}
-          <span className='text-primary-1 font-medium'>
-            Marcelo
-          </span>
-          . I will be a fourth-year PhD student at The Ohio
-          State University.
-          <br />
-          <br />
-          As part of the W3CIL lab, I focus on exploring
-          innovative aspects of cybersecurity and blockchain
-          under the mentorship of{' '}
+          Blockchain security and smart contract analysis.
+        </p>
+
+        <p className='max-w-[56ch] text-base leading-[1.7] text-copy text-pretty'>
+          I work on security tooling and smart contract audits at Trail of Bits.
+          My academic roots are at{' '}
+          <InstitutionName text='The Ohio State University' />, where I
+          researched blockchain security and malware detection in the W3CIL lab
+          under{' '}
           <a
             href='https://carteryagemann.com/'
-            className={LINK_STYLE}
             target='_blank'
             rel='noopener noreferrer'
+            className='text-teal transition-colors duration-200 hover:text-rust'
           >
             Dr. Carter Yagemann
           </a>
-          .
-        </p>
-
-        <p className='text-lg leading-8 indent-6 mb-4 text-neutral-6'>
-          In 2022, I earned my bachelor&apos;s degree at Ohio
-          University, where I had the privilege of working
-          under the guidance of{' '}
+          , and at Ohio University, where I studied under{' '}
           <a
             href='https://www.hchenji.com/'
-            className={LINK_STYLE}
             target='_blank'
             rel='noopener noreferrer'
+            className='text-teal transition-colors duration-200 hover:text-rust'
           >
             Dr. Harsha Chenji
           </a>
           .
         </p>
 
-        <p className='text-lg leading-8 indent-6 mb-4 text-neutral-6'>
-          You can learn more about my{' '}
-          <a href='/about' className={LINK_STYLE}>
-            academic and professional journey
-          </a>{' '}
-          or explore my{' '}
-          <a href='/research' className={LINK_STYLE}>
-            research and publications
-          </a>
-          . I&#39;m also working on launching a blog to share
-          ideas and reflections along the way.
-        </p>
-
-        <hr className='border-t border-neutral-4 my-8' />
-
-        {/* Contact Block */}
         <div
           className={[
-            'mt-8 text-lg leading-7 tracking-wide',
-            'bg-neutral-2/70 p-4 rounded-lg',
-            'border border-neutral-4 text-neutral-6',
+            'flex flex-wrap justify-center gap-2 pt-1.5 font-mono text-xs',
+            'wide:justify-start',
           ].join(' ')}
         >
-          <p className='mb-2'>
-            Get in touch, send me an email at:
-          </p>
-          <div title='Click to copy email to clipboard'>
-            <Typewriter
-              text={CONTACT_EMAIL}
-              delayMilliseconds={200}
-              infinite
-            />
-          </div>
+          <Link href='/about' className={PRIMARY_BUTTON}>
+            about &rarr;
+          </Link>
+          <Link href='/blog' className={SECONDARY_BUTTON}>
+            blog &rarr;
+          </Link>
         </div>
-      </main>
+      </div>
+
+      <div
+        className={[
+          'order-first mx-auto w-full max-w-[260px]',
+          'wide:order-none wide:mx-0 wide:max-w-none',
+        ].join(' ')}
+      >
+        <ProfileFrame />
+      </div>
     </div>
-  );
-};
+  </div>
+);
 
 export default Home;

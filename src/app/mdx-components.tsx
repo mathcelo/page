@@ -1,10 +1,6 @@
-import type { MDXComponents } from 'mdx/types';
-import Typewriter from './components/Typewriter';
-import Publication from './components/Publication';
-import Image from './components/Image';
+import PostImage from '@/app/components/PostImage';
 
-export const mdxComponents: MDXComponents = {
-  Typewriter,
-  Publication,
-  img: Image,
+/** Element overrides applied when rendering blog post MDX. */
+export const mdxComponents = {
+  img: PostImage,
 };
