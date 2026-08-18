@@ -17,7 +17,7 @@
     "gray-matter": "^4.0.3",
     "highlight.js": "11.11.1",
     "next": "15.5.23",
-    "next-mdx-remote": "^5.0.0",
+    "next-mdx-remote": "6.0.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "rehype-highlight": "^7.0.2",
@@ -31,14 +31,15 @@
     "eslint": "9.39.5",
     "eslint-config-next": "15.5.23",
     "postcss": "8.5.26",
-    "sharp": "0.33.5",
+    "sharp": "0.35.3",
     "tailwindcss": "^3.4.1",
     "typescript": "^5",
     "vitest": "4.1.10"
   },
   "pnpm": {
     "overrides": {
-      "postcss": "8.5.26"
+      "postcss": "8.5.26",
+      "sharp": "0.35.3"
     }
   }
 }
