@@ -9,8 +9,8 @@
     "start": "next start",
     "lint": "eslint . --max-warnings 0",
     "test": "vitest run",
-    "new-post": "npx tsx scripts/new-post.ts",
-    "generate-portrait-ascii": "npx tsx scripts/generate-portrait-ascii.ts"
+    "new-post": "tsx scripts/new-post.ts",
+    "generate-portrait-ascii": "tsx scripts/generate-portrait-ascii.ts"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.16",
@@ -33,10 +33,15 @@
     "postcss": "8.5.26",
     "sharp": "0.35.3",
     "tailwindcss": "^3.4.1",
+    "tsx": "4.23.12",
     "typescript": "^5",
     "vitest": "4.1.10"
   },
   "pnpm": {
+    "ignoredBuiltDependencies": [
+      "esbuild",
+      "unrs-resolver"
+    ],
     "overrides": {
       "postcss": "8.5.26",
       "sharp": "0.35.3"
