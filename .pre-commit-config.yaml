@@ -3,12 +3,12 @@ repos:
     hooks:
       - id: eslint
         name: eslint
-        entry: npx eslint --max-warnings 0 --no-warn-ignored
+        entry: pnpm exec eslint --max-warnings 0 --no-warn-ignored
         language: system
         files: \.(ts|tsx|mjs)$
       - id: typecheck
         name: typecheck
-        entry: npx tsc --noEmit
+        entry: pnpm exec tsc --noEmit
         language: system
         pass_filenames: false
       - id: tests

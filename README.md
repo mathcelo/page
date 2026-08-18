@@ -22,10 +22,13 @@ Page content is driven by `src/content/resume.ts`; blog posts live in
 
 ```bash
 pnpm install
+prek install   # set up pre-commit hooks (lint, typecheck, tests)
 pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view it locally.
+
+Run the checks manually with `pnpm lint`, `pnpm exec tsc --noEmit`, and `pnpm test`.
 
 ## Creating a new blog post
 
