@@ -57,14 +57,19 @@ const readDate = (value: unknown, filename: string): string => {
 };
 
 /** Post filenames, excluding the archive/ subdirectory. */
-export const listPostFilenames = (): string[] =>
-  fs.readdirSync(BLOG_CONTENT_DIRECTORY).filter((name) => name.endsWith('.mdx'));
+export const listPostFilenames = (
+  directory: string = BLOG_CONTENT_DIRECTORY
+): string[] =>
+  fs.readdirSync(directory).filter((name) => name.endsWith('.mdx'));
 
 export const slugFromFilename = (filename: string): string =>
   filename.replace(/\.mdx$/, '');
 
-export const readPost = (filename: string): Post => {
-  const filePath = path.join(BLOG_CONTENT_DIRECTORY, filename);
+export const readPost = (
+  filename: string,
+  directory: string = BLOG_CONTENT_DIRECTORY
+): Post => {
+  const filePath = path.join(directory, filename);
   const { content, data } = matter(fs.readFileSync(filePath, 'utf8'));
   const slug = slugFromFilename(filename);
 
@@ -78,10 +83,13 @@ export const readPost = (filename: string): Post => {
   };
 };
 
-export const readPostBySlug = (slug: string): Post | null => {
+export const readPostBySlug = (
+  slug: string,
+  directory: string = BLOG_CONTENT_DIRECTORY
+): Post | null => {
   const filename = `${slug}.mdx`;
-  if (!fs.existsSync(path.join(BLOG_CONTENT_DIRECTORY, filename))) return null;
-  return readPost(filename);
+  if (!fs.existsSync(path.join(directory, filename))) return null;
+  return readPost(filename, directory);
 };
 
 /** Formatted in UTC so output does not depend on the build machine's timezone. */
