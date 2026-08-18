@@ -129,6 +129,13 @@ describe('createPost', () => {
     );
   });
 
+  it('rejects titles that slugify to an empty string instead of writing ".mdx"', () => {
+    const directory = makeFixtureDirectory();
+
+    expect(() => createPost('¡¿!? 🎉', directory)).toThrow(/no letters or digits/);
+    expect(fs.readdirSync(directory)).toEqual([]);
+  });
+
   it('treats titles that slugify identically as the same post', () => {
     const directory = makeFixtureDirectory();
     createPost('Hello, World!', directory);

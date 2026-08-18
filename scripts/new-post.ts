@@ -35,6 +35,11 @@ tags: []
 
 export function createPost(title: string, contentDirectory: string = CONTENT_DIR): string {
   const slug = slugify(title);
+
+  if (!slug) {
+    throw new Error(`Title "${title}" contains no letters or digits to build a filename from`);
+  }
+
   const filename = `${slug}.mdx`;
   const filepath = join(contentDirectory, filename);
 
