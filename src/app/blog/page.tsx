@@ -25,14 +25,14 @@ const BlogIndexPage = (): React.ReactElement => {
             'mx-auto w-full max-w-shell px-5 pb-[46px] pt-[56px] compact:px-7',
           ].join(' ')}
         >
-          <SectionRow label='blog'>
-            <div className='flex flex-col gap-3.5'>
-              <h1 className='text-[40px] font-bold leading-[1.08] tracking-[-0.035em]'>
+          <SectionRow layout='stacked' label='blog'>
+            <div className='flex flex-col gap-5'>
+              <h1 className='text-[clamp(3.5rem,9vw,6.5rem)] font-bold leading-[1.08] tracking-[-0.05em]'>
                 Notes
               </h1>
               <p
                 className={[
-                  'max-w-[58ch] text-[16.5px] leading-[1.7]',
+                  'max-w-[40ch] text-xl leading-[1.7]',
                   'text-copy text-pretty',
                 ].join(' ')}
               >
@@ -48,7 +48,7 @@ const BlogIndexPage = (): React.ReactElement => {
           'mx-auto w-full max-w-shell px-5 pb-[90px] pt-[60px] compact:px-7',
         ].join(' ')}
       >
-        <SectionRow label='posts'>
+        <SectionRow layout='stacked' label='posts'>
           <div className='flex flex-col border-b border-rule'>
             {posts.map((post) => (
               <BlogPostCard
