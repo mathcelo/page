@@ -5,7 +5,7 @@ import {
   LINKEDIN_URL,
 } from '@/content/resume';
 
-const LINK_STYLE = 'text-teal transition-colors duration-200 hover:text-rust';
+const LINK_STYLE = 'text-teal transition-colors duration-200 hover:text-rust underline-offset-[5px] hover:underline';
 
 const SiteFooter = (): React.ReactElement => (
   <footer className='border-t border-rule bg-surface'>

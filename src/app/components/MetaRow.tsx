@@ -6,6 +6,7 @@ interface MetaRowProps {
   children: React.ReactNode;
   /** Padding and border tuning supplied by the call site. */
   className?: string;
+  layout?: 'columns' | 'stacked';
 }
 
 /** A hairline-separated record row: short label in the gutter, detail beside it. */
@@ -13,11 +14,13 @@ const MetaRow = ({
   gutter,
   children,
   className = '',
+  layout = 'columns',
 }: MetaRowProps): React.ReactElement => (
   <div
     className={[
-      'grid grid-cols-1 gap-[18px] border-t border-rule',
-      'wide:grid-cols-[175px_minmax(0,1fr)] wide:gap-6',
+      layout === 'stacked'
+        ? 'block'
+        : 'grid grid-cols-1 gap-[18px] border-t border-rule wide:grid-cols-[175px_minmax(0,1fr)] wide:gap-6',
       className,
     ].join(' ')}
   >
