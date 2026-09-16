@@ -8,6 +8,8 @@ interface TimelineChip {
 
 const USENIX_SECURITY_23_URL =
   'https://www.usenix.org/conference/usenixsecurity23/presentation/zhang-zhuo-exploit';
+const TRAIL_OF_BITS_BLOG_POST_URL =
+  'https://blog.trailofbits.com/2026/09/15/1passwords-ai-patching-benchmark-is-misleading/';
 
 export interface TimelineEntry {
   period: string;
@@ -59,7 +61,13 @@ export const TIMELINE: readonly TimelineEntry[] = [
       'onsite in Brooklyn, where I architected a general data flow engine for ' +
       'Slither and demonstrated it with a reentrancy detector, an interval ' +
       'analysis, and a rounding-issue detector.',
-    chips: [],
+    chips: [
+      {
+        label: 'Trail of Bits blog — 1Password’s AI patching benchmark',
+        highlighted: true,
+        url: TRAIL_OF_BITS_BLOG_POST_URL,
+      },
+    ],
   },
   {
     period: '2022–26',

@@ -1,5 +1,6 @@
 import { writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const CONTENT_DIR = "src/content/blog";
 
@@ -10,18 +11,18 @@ interface PostFrontmatter {
   tags: string[];
 }
 
-function slugify(title: string): string {
+export function slugify(title: string): string {
   return title
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 }
 
-function formatDate(date: Date): string {
+export function formatDate(date: Date): string {
   return date.toISOString().split("T")[0];
 }
 
-function generateFrontmatter(frontmatter: PostFrontmatter): string {
+export function generateFrontmatter(frontmatter: PostFrontmatter): string {
   return `---
 title: ${frontmatter.title}
 date: ${frontmatter.date}
@@ -32,14 +33,18 @@ tags: []
 `;
 }
 
-function createPost(title: string): void {
+export function createPost(title: string, contentDirectory: string = CONTENT_DIR): string {
   const slug = slugify(title);
+
+  if (!slug) {
+    throw new Error(`Title "${title}" contains no letters or digits to build a filename from`);
+  }
+
   const filename = `${slug}.mdx`;
-  const filepath = join(CONTENT_DIR, filename);
+  const filepath = join(contentDirectory, filename);
 
   if (existsSync(filepath)) {
-    console.error(`Error: Post already exists at ${filepath}`);
-    process.exit(1);
+    throw new Error(`Post already exists at ${filepath}`);
   }
 
   const frontmatter: PostFrontmatter = {
@@ -50,15 +55,26 @@ function createPost(title: string): void {
   };
 
   writeFileSync(filepath, generateFrontmatter(frontmatter));
-  console.log(`Created: ${filepath}`);
+  return filepath;
 }
 
-const title = process.argv.slice(2).join(" ");
+function runCli(): void {
+  const title = process.argv.slice(2).join(" ");
 
-if (!title) {
-  console.error("Usage: pnpm new-post <title>");
-  console.error('Example: pnpm new-post "My New Blog Post"');
-  process.exit(1);
+  if (!title) {
+    console.error("Usage: pnpm new-post <title>");
+    console.error('Example: pnpm new-post "My New Blog Post"');
+    process.exit(1);
+  }
+
+  try {
+    console.log(`Created: ${createPost(title)}`);
+  } catch (error) {
+    console.error(`Error: ${error instanceof Error ? error.message : String(error)}`);
+    process.exit(1);
+  }
 }
 
-createPost(title);
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  runCli();
+}

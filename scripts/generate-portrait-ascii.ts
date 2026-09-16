@@ -5,7 +5,7 @@
  *   pnpm generate-portrait-ascii
  */
 import { writeFileSync } from 'node:fs';
-import sharp from 'sharp';
+import sharp, { type Sharp } from 'sharp';
 
 const SOURCE = 'public/portrait.webp';
 const TARGET = 'src/content/portrait-ascii.ts';
@@ -33,7 +33,7 @@ const isShadow = (red: number, green: number, blue: number): boolean =>
 const luminance = (red: number, green: number, blue: number): number =>
   (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255;
 
-async function repaintShadow(): Promise<sharp.Sharp> {
+async function repaintShadow(): Promise<Sharp> {
   const { data, info } = await sharp(SOURCE)
     .ensureAlpha()
     .raw()

@@ -1,0 +1,9 @@
+minimumReleaseAge: 1440
+
+allowBuilds:
+  esbuild: false
+  unrs-resolver: false
+
+overrides:
+  postcss: 8.5.26
+  sharp: 0.35.3

@@ -6,6 +6,7 @@ import ProjectCard from '@/app/components/ProjectCard';
 import SectionRow from '@/app/components/SectionRow';
 import Tag from '@/app/components/Tag';
 import TimelineRow from '@/app/components/TimelineRow';
+import WritingCard from '@/app/components/WritingCard';
 import {
   ACHIEVEMENTS,
   AUTHOR_NAME,
@@ -26,6 +27,7 @@ const AboutHeader = (): React.ReactElement => (
     <div className={[
           'grid grid-cols-1 items-end gap-6 pt-11 pb-10 wide:grid-cols-[1.2fr_1fr]',
           'wide:gap-16 wide:pt-16 wide:pb-14 mx-auto w-full max-w-shell px-5 compact:px-7',
+          'motion-safe:animate-enter-page',
         ].join(' ')}>
       <div>
         <p className='mb-5 font-mono text-sm text-teal'>{'// about me'}</p>
@@ -62,33 +64,14 @@ const Publications = (): React.ReactElement => (
   <SectionRow layout='stacked' label='publications'>
     <div>
       {PUBLICATIONS.map((publication) => (
-        <MetaRow
+        <WritingCard
           key={publication.title}
-          className={[
-          'relative border border-rule-heavy border-t-[3px] border-t-accent bg-surface',
-          'px-[22px] py-[26px] compact:px-10 compact:py-9',
-        ].join(' ')} layout='stacked'
-          gutter={
-            <div className='mb-[18px] font-mono text-sm text-rust'>
-              {publication.venue}
-            </div>
-          }
-        >
-          <div className='flex flex-col gap-2'>
-            <h2 className={[
-          'max-w-[34ch] text-[clamp(1.5rem,3vw,2rem)] font-medium leading-[1.35]',
-          'tracking-[-0.025em]',
-        ].join(' ')}>
-              <a
-                href={publication.url}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='text-ink transition-colors duration-200 hover:text-rust'
-              >
-                {publication.title}<span aria-hidden='true' className='whitespace-nowrap text-teal'> ↗</span>
-              </a>
-            </h2>
-            <p className='mt-3.5 text-sm leading-[1.6] text-copy'>
+          href={publication.url}
+          title={publication.title}
+          date='2023'
+          dateLabel={publication.venue}
+          detail={
+            <>
               {publication.authors.map((author, position) => (
                 <span
                   key={author}
@@ -98,9 +81,10 @@ const Publications = (): React.ReactElement => (
                   {position < publication.authors.length - 1 ? ', ' : ''}
                 </span>
               ))}
-            </p>
-          </div>
-        </MetaRow>
+            </>
+          }
+          external
+        />
       ))}
     </div>
   </SectionRow>
