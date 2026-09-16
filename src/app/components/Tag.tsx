@@ -14,7 +14,7 @@ const Tag = ({
   href,
 }: TagProps): React.ReactElement => {
   const style = [
-    'border border-rule bg-surface px-3 py-[7px]',
+    'inline-flex items-center border border-rule bg-surface px-3 py-[7px]',
     'font-mono text-xs',
     highlighted ? 'text-rust' : 'text-ink-muted',
   ].join(' ');
