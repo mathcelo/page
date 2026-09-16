@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import React from 'react';
 import InstitutionName from '@/app/components/InstitutionName';
 import MetaRow from '@/app/components/MetaRow';
@@ -108,7 +109,17 @@ const Skills = (): React.ReactElement => (
           <div className='font-mono text-sm text-teal'>{group.label}</div>
           <div className='flex flex-wrap gap-[7px]'>
             {group.items.map((item) => (
-              <Tag key={item}>{item}</Tag>
+              <Tag key={item}>
+                {item === 'LaTeX' ? (
+                  <Image
+                    src='/skills/latex.png'
+                    alt='LaTeX'
+                    width={48}
+                    height={20}
+                    className='h-3.5 w-auto'
+                  />
+                ) : item}
+              </Tag>
             ))}
           </div>
         </div>
