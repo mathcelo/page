@@ -3,14 +3,34 @@ import React from 'react';
 import { listPostFilenames, readPost } from '@/app/blog/posts';
 import BlogPostCard from '@/app/components/BlogPostCard';
 import SectionRow from '@/app/components/SectionRow';
+import WritingCard from '@/app/components/WritingCard';
+import { AUTHOR_NAME } from '@/content/resume';
 
 const BLOG_INTRO =
-  'Occasional notes on things I build, and what I learn making them.';
+  'A running collection of work and ideas.';
 
 export const metadata: Metadata = {
   title: 'Notes',
   description: BLOG_INTRO,
 };
+
+const ExternalWriting = (): React.ReactElement => (
+  <WritingCard
+    href='https://blog.trailofbits.com/2026/09/15/1passwords-ai-patching-benchmark-is-misleading/'
+    title='1Password’s AI patching benchmark is misleading'
+    date='2026-09-15'
+    dateLabel='Sep. 15, 2026'
+    source='Trail of Bits'
+    tags={['external']}
+    detail={
+      <>
+        Anish Naik, Dan Guido, Benjamin Samuels,{' '}
+        <span className='font-medium text-ink'>{AUTHOR_NAME}</span>
+      </>
+    }
+    external
+  />
+);
 
 const BlogIndexPage = (): React.ReactElement => {
   const posts = listPostFilenames()
@@ -25,14 +45,14 @@ const BlogIndexPage = (): React.ReactElement => {
             'mx-auto w-full max-w-shell px-5 pb-[46px] pt-[56px] compact:px-7',
           ].join(' ')}
         >
-          <SectionRow label='blog'>
-            <div className='flex flex-col gap-3.5'>
-              <h1 className='text-[40px] font-bold leading-[1.08] tracking-[-0.035em]'>
+          <SectionRow layout='stacked' label='blog'>
+            <div className='flex flex-col gap-5'>
+              <h1 className='text-[clamp(3.5rem,9vw,6.5rem)] font-bold leading-[1.08] tracking-[-0.05em]'>
                 Notes
               </h1>
               <p
                 className={[
-                  'max-w-[58ch] text-[16.5px] leading-[1.7]',
+                  'max-w-[40ch] text-xl leading-[1.7]',
                   'text-copy text-pretty',
                 ].join(' ')}
               >
@@ -45,11 +65,13 @@ const BlogIndexPage = (): React.ReactElement => {
 
       <div
         className={[
-          'mx-auto w-full max-w-shell px-5 pb-[90px] pt-[60px] compact:px-7',
+          'mx-auto flex w-full max-w-shell flex-col gap-20 px-5 pb-[90px] pt-[60px]',
+          'compact:px-7',
         ].join(' ')}
       >
-        <SectionRow label='posts'>
+        <SectionRow layout='stacked' label='writing'>
           <div className='flex flex-col border-b border-rule'>
+            <ExternalWriting />
             {posts.map((post) => (
               <BlogPostCard
                 key={post.slug}

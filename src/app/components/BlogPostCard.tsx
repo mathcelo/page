@@ -1,7 +1,6 @@
-import Link from 'next/link';
 import React from 'react';
 import { formatPostDate } from '@/app/blog/posts';
-import MetaRow from '@/app/components/MetaRow';
+import WritingCard from '@/app/components/WritingCard';
 
 interface BlogPostCardProps {
   slug: string;
@@ -19,42 +18,14 @@ const BlogPostCard = ({
   excerpt,
   tags,
 }: BlogPostCardProps): React.ReactElement => (
-  <Link href={`/blog/${slug}`} className='group block'>
-    <MetaRow
-      className={[
-        'py-[26px] transition-colors duration-200',
-        'group-hover:border-accent',
-      ].join(' ')}
-      gutter={
-        <div className='flex flex-col gap-[5px]'>
-          <time dateTime={date} className='font-mono text-[11.5px] text-meta'>
-            {formatPostDate(date)}
-          </time>
-          {tags.length > 0 && (
-            <div className='font-mono text-[11.5px] text-teal'>
-              {tags.join(' · ')}
-            </div>
-          )}
-        </div>
-      }
-    >
-      <div className='flex flex-col gap-2'>
-        <h2
-          className={[
-            'text-[19px] font-medium leading-[1.35] tracking-[-0.02em]',
-            'text-ink transition-colors duration-200 group-hover:text-teal',
-          ].join(' ')}
-        >
-          {title || slug}
-        </h2>
-        {excerpt && (
-          <p className='text-[15px] leading-[1.65] text-copy text-pretty'>
-            {excerpt}
-          </p>
-        )}
-      </div>
-    </MetaRow>
-  </Link>
+  <WritingCard
+    href={`/blog/${slug}`}
+    title={title || slug}
+    date={date}
+    dateLabel={formatPostDate(date)}
+    tags={tags}
+    detail={excerpt}
+  />
 );
 
 export default BlogPostCard;
