@@ -7,6 +7,7 @@ import { PORTRAIT_ASCII } from '@/content/portrait-ascii';
 /** Portrait in a small window, its ASCII view available to pointer, keyboard, and touch. */
 const ProfileFrame = (): React.ReactElement => {
   const [showAscii, setShowAscii] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
   return (
     <figure className='w-full'>
@@ -18,7 +19,7 @@ const ProfileFrame = (): React.ReactElement => {
             'px-3 py-1.5 text-xs text-meta',
           ].join(' ')}
         >
-          <span>{showAscii ? 'portrait.txt' : 'portrait.webp'}</span>
+          <span>{showAscii || hovered ? 'portrait.txt' : 'portrait.webp'}</span>
           <span>MM</span>
         </div>
         <button
@@ -30,6 +31,9 @@ const ProfileFrame = (): React.ReactElement => {
           aria-label='Show ASCII portrait'
           aria-pressed={showAscii}
           onClick={() => setShowAscii(!showAscii)}
+          // Touch taps fire pointerenter too; only a real mouse hover previews the ASCII view.
+          onPointerEnter={(event) => setHovered(event.pointerType === 'mouse')}
+          onPointerLeave={() => setHovered(false)}
         >
           <Image
             src='/portrait.webp'
