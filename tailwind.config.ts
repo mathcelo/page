@@ -10,19 +10,15 @@ const config: Config = {
   theme: {
     extend: {
       keyframes: {
-        'enter-page': {
-          from: { opacity: '0', transform: 'translateY(16px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
+        blink: {
+          '50%': { opacity: '0' },
         },
       },
       animation: {
-        'enter-page': 'enter-page 650ms ease both',
-        'enter-hero': 'enter-page 700ms ease both',
-        'enter-portrait': 'enter-page 800ms 120ms ease both',
-        'enter-background': 'enter-page 800ms 220ms ease both',
+        blink: 'blink 1.1s steps(1, end) infinite',
       },
       boxShadow: {
-        button: '4px 4px 0 #D8E2E4',
+        window: '8px 8px 0 #D8E2E4',
       },
       // Breakpoints mirroring the design's two max-width rules (860px, 560px).
       screens: {

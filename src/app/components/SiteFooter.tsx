@@ -5,39 +5,26 @@ import {
   LINKEDIN_URL,
 } from '@/content/resume';
 
-const LINK_STYLE = 'text-teal transition-colors duration-200 hover:text-rust underline-offset-[5px] hover:underline';
+const LINK_STYLE = 'text-teal underline-offset-4 hover:text-rust hover:underline';
 
+/** Status line along the bottom edge of the terminal window. */
 const SiteFooter = (): React.ReactElement => (
-  <footer className='border-t border-rule bg-surface'>
+  <footer className='border-t border-rule-heavy bg-canvas'>
     <div
       className={[
-        'mx-auto flex w-full max-w-shell flex-wrap items-center justify-between',
-        'gap-5 px-5 py-[34px] font-mono text-xs text-meta compact:px-7',
+        'flex flex-wrap items-center justify-between gap-x-6 gap-y-3',
+        'px-5 py-4 text-xs text-meta compact:px-10',
       ].join(' ')}
     >
-      <div className='flex items-center gap-2.5'>
-        <span className='h-[9px] w-[9px] bg-accent' aria-hidden='true' />
-        <span>© {new Date().getFullYear()} Marcelo Morales</span>
-      </div>
-
-      <div className='flex flex-wrap gap-x-[22px] gap-y-2'>
+      <span>© {new Date().getFullYear()} Marcelo Morales</span>
+      <div className='flex flex-wrap gap-x-5 gap-y-2'>
         <a href={`mailto:${CONTACT_EMAIL}`} className={LINK_STYLE}>
           {CONTACT_EMAIL}
         </a>
-        <a
-          href={LINKEDIN_URL}
-          target='_blank'
-          rel='noopener noreferrer'
-          className={LINK_STYLE}
-        >
+        <a href={LINKEDIN_URL} target='_blank' rel='noopener noreferrer' className={LINK_STYLE}>
           linkedin
         </a>
-        <a
-          href={GITHUB_URL}
-          target='_blank'
-          rel='noopener noreferrer'
-          className={LINK_STYLE}
-        >
+        <a href={GITHUB_URL} target='_blank' rel='noopener noreferrer' className={LINK_STYLE}>
           github
         </a>
       </div>

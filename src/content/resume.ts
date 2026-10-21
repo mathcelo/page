@@ -19,7 +19,7 @@ export interface TimelineEntry {
   chips: readonly TimelineChip[];
 }
 
-interface Publication {
+export interface Publication {
   venue: string;
   title: string;
   authors: readonly string[];
@@ -45,6 +45,17 @@ interface Achievement {
   title: string;
   institution: string;
 }
+
+/** Writing published outside this site, listed alongside the local notes. */
+export const EXTERNAL_WRITING = {
+  title: '1Password’s AI patching benchmark is misleading',
+  url: TRAIL_OF_BITS_BLOG_POST_URL,
+  date: '2026-09-15',
+  dateLabel: 'Sep. 15, 2026',
+  source: 'Trail of Bits',
+  tags: ['external'],
+  authors: ['Anish Naik', 'Dan Guido', 'Benjamin Samuels', AUTHOR_NAME],
+} as const;
 
 export const CONTACT_EMAIL = 'marcelomoralesuni@gmail.com';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/mathcelo/';
