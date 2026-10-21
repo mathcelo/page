@@ -14,7 +14,7 @@ const PROSE_LINK = 'whitespace-nowrap text-teal underline underline-offset-4 hov
 
 const Introduction = (): React.ReactElement => (
   <p className='max-w-[64ch] font-sans text-[1.0625rem] leading-[1.75] text-copy text-pretty'>
-    I work on security tooling and smart contract audits at{' '}
+    I work on security tooling and security audits at{' '}
     <a href='https://trailofbits.com/' className={PROSE_LINK}>
       Trail of Bits
     </a>.
