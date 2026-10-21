@@ -38,8 +38,8 @@ const Description = (): React.ReactElement => (
   <ManSection id='description' title='Description'>
     <p className='max-w-[64ch] font-sans text-[1.0625rem] leading-[1.75] text-copy'>
       I’m a security engineer at{' '}
-      <a href='https://trailofbits.com/' className={LINK_STYLE}>Trail of Bits</a>, working on smart
-      contract audits and security tooling. My path here runs through
+      <a href='https://trailofbits.com/' className={LINK_STYLE}>Trail of Bits</a>, working on
+      security audits and tooling. My path here runs through
       software engineering, blockchain research, and malware analysis.
     </p>
   </ManSection>

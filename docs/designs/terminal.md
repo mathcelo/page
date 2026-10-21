@@ -11,7 +11,7 @@ facts first.
   window's tab bar (`1:home 2:about 3:blog`, current path on the right) and the footer is its
   status line. No imagery beyond the portrait, no template chrome.
 - **Role and employer on the first screen (F1, "Employer named early").** `whoami` prints the
-  name, "Security engineer @ Trail of Bits" and the existing tagline. The Ohio State sentence is
+  name and "Security engineer @ Trail of Bits". The Ohio State sentence is
   kept verbatim in its current tense, because the brief forbids tense changes; F1's dual-role
   line needs the owner's confirmation first, as the research itself notes.
 - **One piece of work is one click from home (F2, F8).** `ls work/selected/` lists the Trail

@@ -14,7 +14,7 @@ const PROSE_LINK = 'whitespace-nowrap text-teal underline underline-offset-4 hov
 
 const Introduction = (): React.ReactElement => (
   <p className='max-w-[64ch] font-sans text-[1.0625rem] leading-[1.75] text-copy text-pretty'>
-    I work on security tooling and smart contract audits at{' '}
+    I work on security tooling and security audits at{' '}
     <a href='https://trailofbits.com/' className={PROSE_LINK}>
       Trail of Bits
     </a>.
@@ -55,9 +55,6 @@ const Identity = (): React.ReactElement => (
     <p className='mt-5 text-[0.9375rem] text-meta'>
       Security engineer <span aria-hidden='true'>@</span>{' '}
       <a href='https://trailofbits.com/' className={PROSE_LINK}>Trail of Bits</a>
-    </p>
-    <p className='mt-2 text-lg leading-snug text-teal compact:text-xl'>
-      Blockchain, smart contract and AI security.
     </p>
   </div>
 );
@@ -111,8 +108,8 @@ const Home = (): React.ReactElement => (
     ].join(' ')}>
       <Identity />
       <div className={[
-        'w-full max-w-[240px] compact:col-start-2 compact:row-span-2 compact:row-start-1',
-        'compact:max-w-none compact:pt-2',
+        'mx-auto w-full max-w-[240px] compact:col-start-2 compact:row-span-2 compact:row-start-1',
+        'compact:mx-0 compact:max-w-none compact:pt-2',
       ].join(' ')}>
         <ProfileFrame />
       </div>
