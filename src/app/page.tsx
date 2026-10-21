@@ -65,7 +65,7 @@ const SelectedWork = (): React.ReactElement => {
   const [paper] = PUBLICATIONS;
   return (
     <section aria-labelledby='selected-work'>
-      <CommandHeading id='selected-work' command='ls work/ --selected' label='selected work' />
+      <CommandHeading id='selected-work' command='ls work/selected/' label='selected work' />
       <ul className='mt-5 border-b border-rule'>
         <ListingEntry
           href={EXTERNAL_WRITING.url}
