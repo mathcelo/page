@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
+import { formatPostDate } from '@/app/blog/posts';
 import AuthorList from '@/app/components/AuthorList';
 import CommandHeading from '@/app/components/CommandHeading';
 import ContactList from '@/app/components/ContactList';
@@ -70,7 +71,7 @@ const SelectedWork = (): React.ReactElement => (
           key={post.url}
           href={post.url}
           title={post.title}
-          meta={<>{post.source} blog<br />{post.dateLabel}</>}
+          meta={<>{post.source} blog<br />{formatPostDate(post.date)}</>}
           detail={<AuthorList authors={post.authors} />}
           headingLevel='h3'
           external

@@ -14,14 +14,13 @@ export const metadata: Metadata = {
   description: BLOG_INTRO,
 };
 
-const EntryMeta = ({ date, dateLabel, source, tags }: {
+const EntryMeta = ({ date, source, tags }: {
   date: string;
-  dateLabel: string;
   source?: string;
   tags: readonly string[];
 }): React.ReactElement => (
   <>
-    <time dateTime={date}>{dateLabel}</time>
+    <time dateTime={date}>{formatPostDate(date)}</time>
     {source && <span className='block text-rust'>{source}</span>}
     {tags.length > 0 && <span className='block text-teal'>{tags.join(' · ')}</span>}
   </>
@@ -63,7 +62,6 @@ const BlogIndexPage = (): React.ReactElement => {
             meta={
               <EntryMeta
                 date={post.date}
-                dateLabel={post.dateLabel}
                 source={post.source}
                 tags={post.tags}
               />
@@ -79,7 +77,7 @@ const BlogIndexPage = (): React.ReactElement => {
             href={`/blog/${post.slug}`}
             title={post.title || post.slug}
             meta={
-              <EntryMeta date={post.date} dateLabel={formatPostDate(post.date)} tags={post.tags} />
+              <EntryMeta date={post.date} tags={post.tags} />
             }
             detail={post.excerpt}
             headingLevel='h2'
