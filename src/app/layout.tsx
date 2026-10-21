@@ -26,8 +26,8 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Marcelo Morales',
-    template: '%s · Marcelo Morales',
+    default: 'mathcelo',
+    template: '%s · mathcelo',
   },
   description:
     'Security engineer at Trail of Bits working on blockchain, smart contract and ' +
