@@ -41,7 +41,7 @@ facts first.
 - **Shell (layout, nav, footer):** window frame with offset shadow, sticky tab bar with
   `aria-current`, a "skip to content" link, status-line footer with the same three contacts.
 - **Home:** `whoami` identity block with the h1; the portrait as a small window titled
-  `portrait.webp` / `portrait.txt` with a "click or press enter / photo ⇄ ascii" caption;
+  `portrait.webp` / `portrait.txt` with a "photo ⇄ ascii" caption;
   `cat background.txt` with the verbatim bio; selected work; contact; idle prompt.
   On phones the portrait sits between the identity and the bio.
 - **About:** a man page. `MORALES(1)` header and footer lines, the existing h1, then

@@ -56,10 +56,7 @@ const ProfileFrame = (): React.ReactElement => {
           </pre>
         </button>
       </div>
-      <figcaption className='mt-2.5 flex flex-wrap justify-between gap-x-3 text-xs text-meta'>
-        <span>click or press enter</span>
-        <span className='text-teal'>photo ⇄ ascii</span>
-      </figcaption>
+      <figcaption className='mt-2.5 text-right text-xs text-teal'>photo ⇄ ascii</figcaption>
     </figure>
   );
 };
