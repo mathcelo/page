@@ -7,7 +7,7 @@ import InstitutionName from '@/app/components/InstitutionName';
 import ListingEntry from '@/app/components/ListingEntry';
 import ProfileFrame from '@/app/components/ProfileFrame';
 import ShellPrompt from '@/app/components/ShellPrompt';
-import { EXTERNAL_WRITING, PUBLICATIONS } from '@/content/resume';
+import { EXTERNAL_WRITING } from '@/content/resume';
 
 const PROSE_LINK = 'whitespace-nowrap text-teal underline underline-offset-4 hover:text-rust';
 
@@ -56,48 +56,35 @@ const Identity = (): React.ReactElement => (
       <a href='https://trailofbits.com/' className={PROSE_LINK}>Trail of Bits</a>
     </p>
     <p className='mt-2 text-lg leading-snug text-teal compact:text-xl'>
-      Blockchain security and smart contract analysis.
+      Blockchain, smart contract and AI security.
     </p>
   </div>
 );
 
-const SelectedWork = (): React.ReactElement => {
-  const [paper] = PUBLICATIONS;
-  return (
-    <section aria-labelledby='selected-work'>
-      <CommandHeading id='selected-work' command='ls work/selected/' label='selected work' />
-      <ul className='mt-5 border-b border-rule'>
-        {EXTERNAL_WRITING.map((post) => (
-          <ListingEntry
-            key={post.url}
-            href={post.url}
-            title={post.title}
-            meta={<>{post.source} blog<br />{post.dateLabel}</>}
-            detail={<AuthorList authors={post.authors} />}
-            headingLevel='h3'
-            external
-          />
-        ))}
-        {paper && (
-          <ListingEntry
-            href={paper.url}
-            title={paper.title}
-            meta={<>paper<br />{paper.venue}</>}
-            detail={<AuthorList authors={paper.authors} />}
-            headingLevel='h3'
-            external
-          />
-        )}
-      </ul>
-      <p className='mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm'>
-        <Link href='/blog' className={PROSE_LINK}>all notes →</Link>
-        <Link href='/about' className={PROSE_LINK}>
-          experience, projects &amp; publications →
-        </Link>
-      </p>
-    </section>
-  );
-};
+const SelectedWork = (): React.ReactElement => (
+  <section aria-labelledby='selected-work'>
+    <CommandHeading id='selected-work' command='ls work/selected/' label='selected work' />
+    <ul className='mt-5 border-b border-rule'>
+      {EXTERNAL_WRITING.map((post) => (
+        <ListingEntry
+          key={post.url}
+          href={post.url}
+          title={post.title}
+          meta={<>{post.source} blog<br />{post.dateLabel}</>}
+          detail={<AuthorList authors={post.authors} />}
+          headingLevel='h3'
+          external
+        />
+      ))}
+    </ul>
+    <p className='mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm'>
+      <Link href='/blog' className={PROSE_LINK}>all notes →</Link>
+      <Link href='/about' className={PROSE_LINK}>
+        experience, projects &amp; publications →
+      </Link>
+    </p>
+  </section>
+);
 
 const Contact = (): React.ReactElement => (
   <section aria-labelledby='contact'>

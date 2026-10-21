@@ -15,7 +15,7 @@ facts first.
   kept verbatim in its current tense, because the brief forbids tense changes; F1's dual-role
   line needs the owner's confirmation first, as the research itself notes.
 - **One piece of work is one click from home (F2, F8).** `ls work/selected/` lists the Trail
-  of Bits post and the USENIX Security '23 paper, followed by "all notes" and
+  of Bits blog posts (the USENIX Security '23 paper stays on about), followed by "all notes" and
   "experience, projects & publications" links. The home page previously linked no work.
 - **Uniform entry format (F3).** A single `ListingEntry` row (facts column, linked title,
   byline) is used for selected work, publications and notes, so the three read the same way.

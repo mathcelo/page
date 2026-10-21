@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     template: '%s · Marcelo Morales',
   },
   description:
-    'Security engineer at Trail of Bits working on blockchain security and ' +
-    'smart contract analysis.',
+    'Security engineer at Trail of Bits working on blockchain, smart contract and ' +
+    'AI security.',
 };
 
 export default function RootLayout({
