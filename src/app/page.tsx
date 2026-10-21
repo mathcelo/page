@@ -67,14 +67,17 @@ const SelectedWork = (): React.ReactElement => {
     <section aria-labelledby='selected-work'>
       <CommandHeading id='selected-work' command='ls work/selected/' label='selected work' />
       <ul className='mt-5 border-b border-rule'>
-        <ListingEntry
-          href={EXTERNAL_WRITING.url}
-          title={EXTERNAL_WRITING.title}
-          meta={<>{EXTERNAL_WRITING.source} blog<br />{EXTERNAL_WRITING.dateLabel}</>}
-          detail={<AuthorList authors={EXTERNAL_WRITING.authors} />}
-          headingLevel='h3'
-          external
-        />
+        {EXTERNAL_WRITING.map((post) => (
+          <ListingEntry
+            key={post.url}
+            href={post.url}
+            title={post.title}
+            meta={<>{post.source} blog<br />{post.dateLabel}</>}
+            detail={<AuthorList authors={post.authors} />}
+            headingLevel='h3'
+            external
+          />
+        ))}
         {paper && (
           <ListingEntry
             href={paper.url}

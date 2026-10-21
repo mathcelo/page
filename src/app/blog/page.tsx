@@ -55,21 +55,24 @@ const BlogIndexPage = (): React.ReactElement => {
         <span>title</span>
       </div>
       <ul className='mt-10 border-b border-rule wide:mt-0'>
-        <ListingEntry
-          href={EXTERNAL_WRITING.url}
-          title={EXTERNAL_WRITING.title}
-          meta={
-            <EntryMeta
-              date={EXTERNAL_WRITING.date}
-              dateLabel={EXTERNAL_WRITING.dateLabel}
-              source={EXTERNAL_WRITING.source}
-              tags={EXTERNAL_WRITING.tags}
-            />
-          }
-          detail={<AuthorList authors={EXTERNAL_WRITING.authors} />}
-          headingLevel='h2'
-          external
-        />
+        {EXTERNAL_WRITING.map((post) => (
+          <ListingEntry
+            key={post.url}
+            href={post.url}
+            title={post.title}
+            meta={
+              <EntryMeta
+                date={post.date}
+                dateLabel={post.dateLabel}
+                source={post.source}
+                tags={post.tags}
+              />
+            }
+            detail={<AuthorList authors={post.authors} />}
+            headingLevel='h2'
+            external
+          />
+        ))}
         {posts.map((post) => (
           <ListingEntry
             key={post.slug}

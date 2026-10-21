@@ -10,6 +10,9 @@ const USENIX_SECURITY_23_URL =
   'https://www.usenix.org/conference/usenixsecurity23/presentation/zhang-zhuo-exploit';
 const TRAIL_OF_BITS_BLOG_POST_URL =
   'https://blog.trailofbits.com/2026/09/15/1passwords-ai-patching-benchmark-is-misleading/';
+const TRAIL_OF_BITS_AGENT_POST_URL =
+  'https://blog.trailofbits.com/2026/10/21/' +
+  'your-ai-agent-fixed-the-bug-but-what-else-did-it-change/';
 
 export interface TimelineEntry {
   period: string;
@@ -46,16 +49,27 @@ interface Achievement {
   institution: string;
 }
 
-/** Writing published outside this site, listed alongside the local notes. */
-export const EXTERNAL_WRITING = {
-  title: '1Password’s AI patching benchmark is misleading',
-  url: TRAIL_OF_BITS_BLOG_POST_URL,
-  date: '2026-09-15',
-  dateLabel: 'Sep. 15, 2026',
-  source: 'Trail of Bits',
-  tags: ['external'],
-  authors: ['Anish Naik', 'Dan Guido', 'Benjamin Samuels', AUTHOR_NAME],
-} as const;
+/** Writing published outside this site, newest first, listed alongside the local notes. */
+export const EXTERNAL_WRITING = [
+  {
+    title: 'Your AI agent fixed the bug, but what else did it change?',
+    url: TRAIL_OF_BITS_AGENT_POST_URL,
+    date: '2026-10-21',
+    dateLabel: 'Oct. 21, 2026',
+    source: 'Trail of Bits',
+    tags: ['external'],
+    authors: ['Anish Naik', AUTHOR_NAME],
+  },
+  {
+    title: '1Password’s AI patching benchmark is misleading',
+    url: TRAIL_OF_BITS_BLOG_POST_URL,
+    date: '2026-09-15',
+    dateLabel: 'Sep. 15, 2026',
+    source: 'Trail of Bits',
+    tags: ['external'],
+    authors: ['Anish Naik', 'Dan Guido', 'Benjamin Samuels', AUTHOR_NAME],
+  },
+] as const;
 
 export const CONTACT_EMAIL = 'marcelomoralesuni@gmail.com';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/mathcelo/';
