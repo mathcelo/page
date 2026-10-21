@@ -1,19 +1,21 @@
 import Link from 'next/link';
 import React from 'react';
+import { formatPostDate } from '@/app/blog/posts';
+import AuthorList from '@/app/components/AuthorList';
+import CommandHeading from '@/app/components/CommandHeading';
+import ContactList from '@/app/components/ContactList';
 import InstitutionName from '@/app/components/InstitutionName';
+import ListingEntry from '@/app/components/ListingEntry';
 import ProfileFrame from '@/app/components/ProfileFrame';
+import ShellPrompt from '@/app/components/ShellPrompt';
+import { EXTERNAL_WRITING } from '@/content/resume';
 
-const HERO_BUTTON = [
-  'inline-flex items-center justify-between gap-5 border border-transparent px-4 py-[13px]',
-  'compact:gap-7 compact:px-5 compact:py-3.5 transition duration-200',
-  'hover:-translate-y-[3px] hover:shadow-button [&>span]:transition-transform',
-  '[&>span]:duration-200 hover:[&>span]:translate-x-0.5 hover:[&>span]:-translate-y-0.5',
-].join(' ');
+const PROSE_LINK = 'whitespace-nowrap text-teal underline underline-offset-4 hover:text-rust';
 
 const Introduction = (): React.ReactElement => (
-  <p className='max-w-[68ch] text-base leading-[1.7] text-copy text-pretty'>
+  <p className='max-w-[64ch] font-sans text-[1.0625rem] leading-[1.75] text-copy text-pretty'>
     I work on security tooling and smart contract audits at{' '}
-    <a href='https://trailofbits.com/' className='text-teal hover:text-rust'>
+    <a href='https://trailofbits.com/' className={PROSE_LINK}>
       Trail of Bits
     </a>.
     My academic roots are at{' '}
@@ -24,7 +26,7 @@ const Introduction = (): React.ReactElement => (
       href='https://carteryagemann.com/'
       target='_blank'
       rel='noopener noreferrer'
-      className='text-teal transition-colors duration-200 hover:text-rust'
+      className={PROSE_LINK}
     >
       Dr. Carter Yagemann
     </a>
@@ -33,7 +35,7 @@ const Introduction = (): React.ReactElement => (
       href='https://www.hchenji.com/'
       target='_blank'
       rel='noopener noreferrer'
-      className='text-teal transition-colors duration-200 hover:text-rust'
+      className={PROSE_LINK}
     >
       Dr. Harsha Chenji
     </a>
@@ -41,61 +43,88 @@ const Introduction = (): React.ReactElement => (
   </p>
 );
 
+const Identity = (): React.ReactElement => (
+  <div>
+    <p className='text-[0.9375rem]'><ShellPrompt command='whoami' /></p>
+    <h1 className={[
+      'mt-5 text-[clamp(2.5rem,9vw,4.5rem)] font-medium leading-[1.02]',
+      'tracking-[-0.06em]',
+    ].join(' ')}>
+      Marcelo Morales<span aria-hidden='true' className='text-accent'>.</span>
+    </h1>
+    <p className='mt-5 text-[0.9375rem] text-meta'>
+      Security engineer <span aria-hidden='true'>@</span>{' '}
+      <a href='https://trailofbits.com/' className={PROSE_LINK}>Trail of Bits</a>
+    </p>
+    <p className='mt-2 text-lg leading-snug text-teal compact:text-xl'>
+      Blockchain, smart contract and AI security.
+    </p>
+  </div>
+);
+
+const SelectedWork = (): React.ReactElement => (
+  <section aria-labelledby='selected-work'>
+    <CommandHeading id='selected-work' command='ls work/selected/' label='selected work' />
+    <ul className='mt-5 border-b border-rule'>
+      {EXTERNAL_WRITING.map((post) => (
+        <ListingEntry
+          key={post.url}
+          href={post.url}
+          title={post.title}
+          meta={<>{post.source} blog<br />{formatPostDate(post.date)}</>}
+          detail={<AuthorList authors={post.authors} />}
+          headingLevel='h3'
+          external
+        />
+      ))}
+    </ul>
+    <p className='mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm'>
+      <Link href='/blog' className={PROSE_LINK}>all notes →</Link>
+      <Link href='/about' className={PROSE_LINK}>
+        experience, projects &amp; publications →
+      </Link>
+    </p>
+  </section>
+);
+
+const Contact = (): React.ReactElement => (
+  <section aria-labelledby='contact'>
+    <CommandHeading id='contact' command='cat contact' label='contact' />
+    <div className='mt-5'>
+      <ContactList />
+    </div>
+    <p aria-hidden='true' className='mt-10 text-[0.9375rem]'>
+      <ShellPrompt command='' />
+      <span className={[
+        'ml-1 inline-block h-[1.1em] w-[0.6em] translate-y-[0.2em] bg-accent',
+        'motion-safe:animate-blink',
+      ].join(' ')} />
+    </p>
+  </section>
+);
+
 const Home = (): React.ReactElement => (
-  <div className='blueprint-grid flex items-center grow border-b border-rule bg-surface'>
+  <div className='flex flex-col gap-14 px-5 py-10 compact:px-10 compact:py-14'>
     <div className={[
-          'grid grid-cols-1 gap-10 pt-9 pb-12 compact:grid-cols-[minmax(0,1fr)_260px]',
-          'compact:gap-x-7 compact:pt-12 wide:grid-cols-[minmax(0,1fr)_340px]',
-          'wide:gap-x-[60px] wide:gap-y-14 wide:pt-[68px] mx-auto w-full max-w-shell px-5',
-          'compact:px-7',
-        ].join(' ')}>
-      <div className='motion-safe:animate-enter-hero'>
-        <div className={[
-          'mb-6 flex flex-wrap items-center gap-y-2 gap-x-4 text-[0.8125rem]',
-          'compact:flex-col compact:items-start compact:gap-x-5 wide:flex-row',
-          'wide:items-center wide:[&>*+*]:border-l wide:[&>*+*]:border-rule-heavy',
-          'wide:[&>*+*]:pl-5 font-mono text-meta',
-        ].join(' ')}>
-          <span>Security engineer</span>
-          <a href='https://trailofbits.com/' className='text-teal hover:text-rust'>Trail of Bits</a>
-        </div>
-        <h1 className={[
-          'ml-[-0.05em] text-[clamp(3.5rem,15vw,5.25rem)] font-bold leading-[0.98]',
-          'tracking-[-0.065em] compact:text-[clamp(3.5rem,8.5vw,5rem)]',
-          'wide:text-[clamp(4rem,7.5vw,6.25rem)]',
-        ].join(' ')}>Marcelo<br /><span>Morales</span><span
-          className='text-accent' aria-hidden='true'
-        >.</span></h1>
-        <p className={[
-          'mt-[26px] max-w-[26ch] text-[clamp(1.25rem,2.2vw,1.625rem)] leading-[1.45]',
-          'tracking-[-0.025em] compact:max-w-none text-teal',
-        ].join(' ')}>
-          Blockchain security and<br className='hidden compact:block' /> smart contract analysis.
-        </p>
-        <div className='mt-[30px] flex flex-wrap gap-3 font-mono text-sm'>
-          <Link href='/about' className={`${HERO_BUTTON} bg-accent text-accent-ink hover:bg-accent-hover`}>
-            About me <span aria-hidden='true'>↗</span>
-          </Link>
-          <Link href='/blog' className={`${HERO_BUTTON} border-rule-heavy bg-surface hover:border-accent`}>
-            Read my notes <span aria-hidden='true'>↗</span>
-          </Link>
-        </div>
-      </div>
+      'grid grid-cols-1 gap-10 compact:grid-cols-[minmax(0,1fr)_220px]',
+      'wide:grid-cols-[minmax(0,1fr)_280px] wide:gap-x-16 wide:gap-y-12',
+    ].join(' ')}>
+      <Identity />
       <div className={[
-          'w-full max-w-[280px] justify-self-center self-center px-2.5 compact:max-w-none',
-          'motion-safe:animate-enter-portrait',
-        ].join(' ')}>
+        'w-full max-w-[240px] compact:col-start-2 compact:row-span-2 compact:row-start-1',
+        'compact:max-w-none compact:pt-2',
+      ].join(' ')}>
         <ProfileFrame />
       </div>
-      <div className={[
-          'col-span-full grid grid-cols-1 gap-4 border-t border-rule-heavy pt-7',
-          'wide:grid-cols-[200px_minmax(0,1fr)] wide:gap-10',
-          'motion-safe:animate-enter-background',
-        ].join(' ')}>
-        <div className='font-mono text-sm text-meta'>{'// background'}</div>
-        <Introduction />
-      </div>
+      <section aria-labelledby='background'>
+        <CommandHeading id='background' command='cat background.txt' label='background' />
+        <div className='mt-4'>
+          <Introduction />
+        </div>
+      </section>
     </div>
+    <SelectedWork />
+    <Contact />
   </div>
 );
 

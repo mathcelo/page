@@ -1,19 +1,17 @@
 import React from 'react';
 import type { Project } from '@/content/resume';
 
-const ProjectCard = ({ project, number }: { project: Project; number: number }): React.ReactElement => (
-  <article className={[
-          'relative flex flex-col gap-2 border border-rule bg-surface p-7',
-          'transition-colors duration-[250ms] hover:bg-canvas',
-        ].join(' ')}>
-    <span aria-hidden='true' className='mb-5 font-mono text-xs text-meta'>
-      {String(number).padStart(2, '0')}
-    </span>
-    <h2 className='text-[1.625rem] font-bold tracking-[-0.02em] text-ink'>
-      {project.name}
-    </h2>
-    <div className='font-mono text-[0.8125rem] text-meta'>{project.meta}</div>
-    <p className='mt-2.5 text-base leading-[1.75] text-copy text-pretty'>
+/** A project entry: name and context on one line, description indented below. */
+const ProjectCard = ({ project }: { project: Project }): React.ReactElement => (
+  <article
+    id={`project-${project.name.toLowerCase()}`}
+    className='scroll-mt-20 border-t border-rule py-5 first:border-t-0 first:pt-0'
+  >
+    <div className='flex flex-wrap items-baseline gap-x-4 gap-y-1'>
+      <h3 className='text-lg font-medium tracking-[-0.01em] text-ink'>{project.name}</h3>
+      <span className='text-[0.8125rem] text-meta'>{project.meta}</span>
+    </div>
+    <p className='mt-2 max-w-[68ch] font-sans text-base leading-[1.7] text-copy text-pretty'>
       {project.description}
     </p>
   </article>

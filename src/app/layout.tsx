@@ -26,12 +26,12 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Marcelo Morales',
-    template: '%s · Marcelo Morales',
+    default: 'mathcelo',
+    template: '%s · mathcelo',
   },
   description:
-    'Security engineer at Trail of Bits working on blockchain security and ' +
-    'smart contract analysis.',
+    'Security engineer at Trail of Bits working on blockchain, smart contract and ' +
+    'AI security.',
 };
 
 export default function RootLayout({
@@ -43,13 +43,27 @@ export default function RootLayout({
         className={[
           spaceGrotesk.variable,
           jetbrainsMono.variable,
-          'blueprint-grid flex min-h-screen flex-col bg-canvas',
-          'font-sans text-ink antialiased',
+          'blueprint-grid min-h-screen bg-canvas font-mono text-ink antialiased',
         ].join(' ')}
       >
-        <SiteNav />
-        <main className='flex flex-1 flex-col'>{children}</main>
-        <SiteFooter />
+        <a
+          href='#content'
+          className={[
+            'sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-30',
+            'focus:bg-surface focus:px-3 focus:py-2 focus:text-sm focus:text-teal',
+          ].join(' ')}
+        >
+          skip to content
+        </a>
+        <div className='mx-auto w-full max-w-shell px-3 py-3 compact:px-6 compact:py-8'>
+          <div className='border border-rule-heavy bg-surface shadow-window'>
+            <SiteNav />
+            <main id='content' tabIndex={-1} className='focus:outline-none'>
+              {children}
+            </main>
+            <SiteFooter />
+          </div>
+        </div>
       </body>
     </html>
   );
