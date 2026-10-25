@@ -26,14 +26,17 @@ const PostImage = ({
       <img
         src={src}
         alt={alt}
-        className='block h-auto w-full border border-rule bg-canvas shadow-sm'
+        className={[
+          'mx-auto block h-auto max-h-96 w-auto max-w-full rounded-xl bg-canvas shadow-photo',
+          'outline outline-1 -outline-offset-1 outline-black/10',
+        ].join(' ')}
       />
       {alt && (
         // aria-hidden: the same text is already the image's accessible name,
         // so announcing it again would duplicate it.
         <span
           aria-hidden='true'
-          className='mt-3 block text-center font-mono text-xs leading-relaxed text-meta'
+          className='mt-8 block text-center font-mono text-xs leading-relaxed text-meta'
         >
           {alt}
         </span>

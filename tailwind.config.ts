@@ -19,6 +19,10 @@ const config: Config = {
       },
       boxShadow: {
         window: '8px 8px 0 #D8E2E4',
+        // Layered soft shadows read as natural depth; a single shadow looks flat.
+        photo:
+          '0 1px 2px rgb(0 0 0 / 0.12), 0 4px 8px rgb(0 0 0 / 0.12), ' +
+          '0 12px 24px rgb(0 0 0 / 0.16), 0 24px 48px rgb(0 0 0 / 0.2)',
       },
       // Breakpoints mirroring the design's two max-width rules (860px, 560px).
       screens: {
