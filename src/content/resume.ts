@@ -86,6 +86,11 @@ export const TIMELINE: readonly TimelineEntry[] = [
       'analysis, and a rounding-issue detector.',
     chips: [
       {
+        label: 'Trail of Bits blog — Your AI agent fixed the bug',
+        highlighted: true,
+        url: TRAIL_OF_BITS_AGENT_POST_URL,
+      },
+      {
         label: 'Trail of Bits blog — 1Password’s AI patching benchmark',
         highlighted: true,
         url: TRAIL_OF_BITS_BLOG_POST_URL,
